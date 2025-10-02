@@ -1,0 +1,291 @@
+/* stylesbuscarguitarras.css — adaptado al estilo de buscar-teclados
+   Scoped under #page-search-guitar to match buscar-teclados.css
+*/
+
+#page-search-guitar {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(180deg, rgba(59, 130, 245, 0.11), white 14%);
+  color: #475569;
+}
+
+/* Header (scoped) - mirror keyboard header behavior */
+#page-search-guitar #header-row {
+  justify-content: center;
+  position: sticky;
+  top: 15px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0 20px;
+  background: transparent;
+}
+
+#page-search-guitar #header-col {
+  width: 100%;
+  max-width: 1200px;
+}
+
+#page-search-guitar #header-inner-row {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(13px);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.14);
+}
+
+/* Logo */
+#page-search-guitar #logo-link {
+  display: block;
+}
+
+#page-search-guitar #logo-text {
+  padding: 10px;
+  font-family: Impact, Charcoal, sans-serif;
+  color: rgb(36, 99, 235);
+}
+
+/* Nav area inside header */
+#page-search-guitar #nav-col {
+  flex: 0 1 auto;
+}
+
+#page-search-guitar #nav-row {
+  padding: 0;
+}
+
+#page-search-guitar #nav-col-inner a,
+#page-search-guitar #nav-col-right a {
+  padding: 10px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Hero / page title */
+#page-search-guitar #hero-row {
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+#page-search-guitar #hero-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+#page-search-guitar #hero-title {
+  font-size: 2.8rem;
+  text-align: center;
+  color: rgb(36, 99, 235);
+  font-weight: 700;
+}
+
+/* Form section (main) */
+#page-search-guitar #form-section-search,
+#page-search-guitar #form-section-search { /* keep both names if present in markup */
+  padding: 50px 150px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+#page-search-guitar #form-container-search,
+#page-search-guitar #form-container-search { /* keep both names if present */
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Table/form layout */
+#page-search-guitar #form-table-search {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* label wrappers — normalized to same visual language as keyboards */
+#page-search-guitar .label-wrap,
+#page-search-guitar #label-wrap-code-search,
+#page-search-guitar #label-wrap-name-search,
+#page-search-guitar #label-wrap-brand-search,
+#page-search-guitar #label-wrap-price-search,
+#page-search-guitar #label-wrap-stock-search,
+#page-search-guitar #label-wrap-date-search,
+#page-search-guitar #label-wrap-type-search,
+#page-search-guitar #label-wrap-material-search,
+#page-search-guitar #label-wrap-case-search {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #0f172a;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Inputs */
+#page-search-guitar input[type="text"],
+#page-search-guitar select {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid rgb(36, 99, 235);
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+/* Readonly inputs: visually muted but consistent */
+#page-search-guitar input[readonly] {
+  background: #f8fafc;
+  color: #334155;
+}
+
+/* Action area (button) */
+#page-search-guitar #form-actions-keyboard,
+#page-search-guitar #form-actions-left-search,
+#page-search-guitar #form-actions-right-search {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Keep the 75/25 split used in keyboard styles */
+#page-search-guitar #form-actions-left-search,
+#page-search-guitar #form-actions-left { flex-basis: 75%; }
+
+#page-search-guitar #form-actions-right-search,
+#page-search-guitar #form-actions-right { flex-basis: 25%; display: flex; justify-content: flex-end; }
+
+/* Search button (same sizing / shape as buscar-teclados) */
+#page-search-guitar #btn-search-guitar {
+  width: 100%;
+  height: 36px;
+  border-radius: 12px;
+  background-color: rgb(36, 99, 235);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+/* Scoped plugin helpers to avoid colliding with main.css */
+#page-search-guitar .gjs-plg-flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+#page-search-guitar .gjs-plg-flex-row {
+  display:flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+
+/* Footer (scoped) */
+#page-search-guitar #footer-row {
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+#page-search-guitar #footer-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+}
+
+#page-search-guitar #footer-copyright {
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+/* Small helper: form table spacing (cells) */
+#page-search-guitar #form-table-search td {
+  vertical-align: middle;
+  padding: 8px 6px;
+}
+
+/* Slight visual polish for focus (same as buscar-teclados) */
+#page-search-guitar input:focus,
+#page-search-guitar select:focus {
+  outline: 3px solid rgba(36, 99, 235, 0.12);
+  outline-offset: 2px;
+}
+
+/* Make sure page internal sections use box-sizing (keeps compatibility) */
+#page-search-guitar #ie9q2d7-3,
+#page-search-guitar #form-section-search {
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments (mirror buscar-teclados) */
+@media (max-width: 992px) {
+  #page-search-guitar #form-section-search {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #page-search-guitar #hero-title {
+    font-size: 2.2rem;
+  }
+
+  /* action columns stack on smaller screens */
+  #page-search-guitar #form-actions-left-search,
+  #page-search-guitar #form-actions-right-search,
+  #page-search-guitar #form-actions-left,
+  #page-search-guitar #form-actions-right {
+    flex-basis: 100%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #page-search-guitar #form-actions-keyboard {
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  /* ensure table / inputs are fluid */
+  #page-search-guitar #form-table-search,
+  #page-search-guitar #form-container-search {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #page-search-guitar #form-section-search {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #page-search-guitar input[type="text"],
+  #page-search-guitar select {
+    padding: 10px;
+  }
+
+  #page-search-guitar #btn-search-guitar {
+    height: 40px;
+  }
+
+  /* On very small screens center the label text so fields/labels don't feel cramped */
+  #page-search-guitar .label-wrap,
+  #page-search-guitar #label-wrap-code-search,
+  #page-search-guitar #label-wrap-name-search,
+  #page-search-guitar #label-wrap-brand-search,
+  #page-search-guitar #label-wrap-price-search,
+  #page-search-guitar #label-wrap-stock-search,
+  #page-search-guitar #label-wrap-date-search,
+  #page-search-guitar #label-wrap-type-search,
+  #page-search-guitar #label-wrap-material-search,
+  #page-search-guitar #label-wrap-case-search {
+    text-align: center;
+  }
+}

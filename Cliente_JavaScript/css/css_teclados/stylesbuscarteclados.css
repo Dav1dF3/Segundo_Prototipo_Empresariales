@@ -1,0 +1,231 @@
+/* stylesbuscarteclados.css — page-specific for Buscar Teclado
+Complementa ../../css/main.css (no duplicamos reglas que ya están en main.css)
+*/
+
+/* Scope root to avoid bleeding into other pages */
+#page-search-keyboard {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(180deg, rgba(59, 130, 245, 0.11), white 14%);
+  color: #475569;
+  box-sizing: border-box;
+}
+
+/* Header (scoped) */
+#page-search-keyboard #header-row {
+  justify-content: center;
+  position: sticky;
+  top: 15px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0 20px;
+  background: transparent;
+}
+
+#page-search-keyboard #header-col {
+  width: 100%;
+  max-width: 1200px;
+}
+
+#page-search-keyboard #header-inner-row {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(13px);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.14);
+}
+
+/* Logo */
+#page-search-keyboard #logo-link {
+  display: block;
+}
+
+#page-search-keyboard #logo-text {
+  padding: 10px;
+  font-family: Impact, Charcoal, sans-serif;
+  color: rgb(36, 99, 235);
+}
+
+/* Nav area inside header */
+#page-search-keyboard #nav-col {
+  flex: 0 1 auto;
+}
+
+#page-search-keyboard #nav-row {
+  padding: 0;
+}
+
+#page-search-keyboard #nav-col-inner a,
+#page-search-keyboard #nav-col-right a {
+  padding: 10px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Hero / page title */
+#page-search-keyboard #hero-row {
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+#page-search-keyboard #hero-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+#page-search-keyboard #hero-title {
+  font-size: 2.8rem;
+  text-align: center;
+  color: rgb(36, 99, 235);
+  font-weight: 700;
+}
+
+/* Form section (main) */
+#page-search-keyboard #form-section-keyboard {
+  padding: 50px 150px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+#page-search-keyboard #form-container-keyboard {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Table/form layout */
+#page-search-keyboard #form-table-keyboard {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* label wrappers */
+#page-search-keyboard .label-wrap {
+  padding: 10px 0;
+  box-sizing: border-box;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+/* Inputs */
+#page-search-keyboard input[type="text"],
+#page-search-keyboard select {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid rgb(36, 99, 235);
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+/* Readonly inputs: visually muted but consistent */
+#page-search-keyboard input[readonly] {
+  background: #f8fafc;
+  color: #334155;
+}
+
+/* Action area (button) */
+#page-search-keyboard #form-actions-keyboard {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#page-search-keyboard #form-actions-left {
+  flex-basis: 75%;
+}
+
+#page-search-keyboard #form-actions-right {
+  flex-basis: 25%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#page-search-keyboard #btn-search-keyboard {
+  width: 100%;
+  height: 36px;
+  border-radius: 12px;
+  background-color: rgb(36, 99, 235);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+/* Footer (scoped) */
+#page-search-keyboard #footer-row {
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+#page-search-keyboard #footer-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+}
+
+#page-search-keyboard #footer-copyright {
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+/* Small helper: form table spacing (cells) */
+#page-search-keyboard #form-table-keyboard td {
+  vertical-align: middle;
+  padding: 8px 6px;
+}
+
+/* Slight visual polish for focus */
+#page-search-keyboard input:focus,
+#page-search-keyboard select:focus {
+  outline: 3px solid rgba(36, 99, 235, 0.12);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  #page-search-keyboard #form-section-keyboard {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #page-search-keyboard #hero-title {
+    font-size: 2.2rem;
+  }
+
+  /* action columns stack on smaller screens */
+  #page-search-keyboard #form-actions-left,
+  #page-search-keyboard #form-actions-right {
+    flex-basis: 100%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #page-search-keyboard #form-actions-keyboard {
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  #page-search-keyboard #form-section-keyboard {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #page-search-keyboard #btn-search-keyboard {
+    height: 40px;
+  }
+}

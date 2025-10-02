@@ -1,0 +1,254 @@
+/* styleseliminarguitarras.css — page-specific for Eliminar Guitarra
+   Reemplaza al anterior. Scoped under #page-delete-guitar.
+*/
+
+#page-delete-guitar {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(180deg, rgba(59, 130, 245, 0.11), white 14%);
+  color: #475569;
+}
+
+/* Header */
+#page-delete-guitar #navbar-wrapper {
+  justify-content: center;
+  position: sticky;
+  top: 15px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0 20px;
+  background: transparent;
+}
+#page-delete-guitar #navbar-column { width: 100%; max-width: 1200px; }
+#page-delete-guitar #navbar-row {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(13px);
+  box-shadow: 0 2px 7px rgba(0,0,0,0.14);
+}
+#page-delete-guitar #navbar-logo-link { display: block; }
+#page-delete-guitar #navbar-logo-text {
+  padding: 10px;
+  font-family: Impact, Charcoal, sans-serif;
+  color: rgb(36, 99, 235);
+}
+#page-delete-guitar #navbar-links-col a,
+#page-delete-guitar #navbar-about-col a {
+  padding: 10px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Page title */
+#page-delete-guitar #page-title-row { justify-content: center; padding: 50px 20px; }
+#page-delete-guitar #page-title-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+#page-delete-guitar #page-title {
+  font-size: 2.8rem;
+  text-align: center;
+  color: rgb(36, 99, 235);
+  font-weight: 700;
+}
+
+/* Main form */
+#page-delete-guitar #form-section-delete {
+  padding: 50px 150px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+#page-delete-guitar #form-container { width: 100%; max-width: 900px; }
+
+#page-delete-guitar #form-table-delete {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Labels & inputs */
+#page-delete-guitar tbody td > div,
+#page-delete-guitar .label-wrap {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #0f172a;
+  font-size: 1rem;
+  text-align: left;
+}
+
+#page-delete-guitar input[type="text"],
+#page-delete-guitar select {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid rgb(36, 99, 235);
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+#page-delete-guitar input[readonly] {
+  background: #f8fafc;
+  color: #334155;
+}
+
+/* ===== REGLAS CORREGIDAS PARA FILA DE BÚSQUEDA =====
+   Apuntan a la estructura real:
+   <td>
+     <div class="gjs-plg-flex-row">
+       <div class="gjs-plg-flex-column">  <-- input aquí
+       <div class="gjs-plg-flex-column">  <-- botón aquí
+*/
+#page-delete-guitar .gjs-plg-flex-row {
+  display: flex;             /* aseguro layout flex (main.css también lo define) */
+  align-items: center;
+  gap: 12px;                 /* separación homogénea */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Primera columna (input) ocupa todo el espacio restante */
+#page-delete-guitar .gjs-plg-flex-row > .gjs-plg-flex-column:first-child {
+  flex: 1 1 auto;
+  min-width: 0;              /* evita overflow */
+}
+
+/* Segunda columna (botón) tiene ancho fijo cómodo y margen interno para separarlo visualmente */
+#page-delete-guitar .gjs-plg-flex-row > .gjs-plg-flex-column:last-child {
+  flex: 0 0 140px;           /* ancho fijo del contenedor del botón */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* El botón dentro del contenedor */
+#page-delete-guitar .gjs-plg-flex-row > .gjs-plg-flex-column:last-child button,
+#page-delete-guitar #btn-search {
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  background-color: rgb(36, 99, 235);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  padding: 0 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+#page-delete-guitar #btn-search:hover {
+  transform: translateY(-1px);
+  background-color: rgb(29, 78, 216);
+}
+
+/* Si por alguna razón el HTML coloca el botón directamente sin wrapper: */
+#page-delete-guitar td > button#btn-search {
+  width: 140px;
+  height: 42px;
+}
+
+/* Actions row (Eliminar) */
+#page-delete-guitar #form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  box-sizing: border-box;
+}
+#page-delete-guitar #form-actions .gjs-plg-flex-column:first-child { flex-basis: 75%; }
+#page-delete-guitar #form-actions .gjs-plg-flex-column:last-child {
+  flex-basis: 25%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#page-delete-guitar #btn-delete {
+  width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  background-color: rgb(220,38,38);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+#page-delete-guitar #btn-delete:hover { background-color: rgb(185,28,28); }
+
+/* Table spacing */
+#page-delete-guitar #form-table-delete td {
+  vertical-align: middle;
+  padding: 8px 6px;
+}
+
+/* Focus */
+#page-delete-guitar input:focus,
+#page-delete-guitar select:focus {
+  outline: 3px solid rgba(36,99,235,0.12);
+  outline-offset: 2px;
+}
+
+/* Footer */
+#page-delete-guitar #footer-row {
+  justify-content: center;
+  padding: 40px 20px;
+}
+#page-delete-guitar #footer-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+}
+#page-delete-guitar #footer-text {
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  #page-delete-guitar #form-section-delete { padding-left: 24px; padding-right: 24px; }
+  #page-delete-guitar #page-title { font-size: 2.2rem; }
+  #page-delete-guitar #form-actions .gjs-plg-flex-column:first-child,
+  #page-delete-guitar #form-actions .gjs-plg-flex-column:last-child {
+    flex-basis: 100%;
+    width: 100%;
+    justify-content: center;
+  }
+  #page-delete-guitar #form-actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 576px) {
+  #page-delete-guitar #form-section-delete { padding-left: 12px; padding-right: 12px; }
+
+  /* En móvil, apilar input y botón */
+  #page-delete-guitar .gjs-plg-flex-row { flex-direction: column; gap: 8px; }
+  #page-delete-guitar .gjs-plg-flex-row > .gjs-plg-flex-column:last-child { flex: 0 0 auto; width: 100%; }
+  #page-delete-guitar .gjs-plg-flex-row > .gjs-plg-flex-column:first-child { width: 100%; }
+
+  #page-delete-guitar #btn-search,
+  #page-delete-guitar #btn-delete {
+    width: 100%;
+    height: 44px;
+  }
+
+  #page-delete-guitar tbody td > div,
+  #page-delete-guitar .label-wrap {
+    text-align: center;
+  }
+}

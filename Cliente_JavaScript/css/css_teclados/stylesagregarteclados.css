@@ -1,0 +1,219 @@
+/* stylesagregarteclados.css — page-specific, same structure/style as stylesagregarguitarras.css
+   Adaptado a la página #page-add-keyboard (Agregar Teclado)
+*/
+
+/* Scope everything to the page root to avoid conflicts */
+#page-add-keyboard {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(180deg, rgba(59,130,245,0.11), white 14%);
+  color: #475569;
+  box-sizing: border-box;
+}
+
+/* Hero */
+#page-add-keyboard #hero-row {
+  justify-content: center;
+  padding: 50px 20px;
+}
+#page-add-keyboard #hero-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+#page-add-keyboard #hero-title {
+  font-size: 2.8rem;
+  text-align: center;
+  color: rgb(36,99,235);
+}
+
+/* Form sections */
+#page-add-keyboard #form-section-keyboard {
+  padding: 50px 150px;
+}
+
+/* Table/form containers */
+#page-add-keyboard #form-table-keyboard,
+#page-add-keyboard #form-table-case {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Label wrappers spacing */
+#page-add-keyboard #label-wrap-code-keyboard,
+#page-add-keyboard #label-wrap-name-keyboard,
+#page-add-keyboard #label-wrap-brand-keyboard,
+#page-add-keyboard #label-wrap-price-keyboard,
+#page-add-keyboard #label-wrap-stock-keyboard,
+#page-add-keyboard #label-wrap-date-keyboard,
+#page-add-keyboard #label-wrap-keys-keyboard,
+#page-add-keyboard #label-wrap-digital-keyboard,
+#page-add-keyboard #label-wrap-sensitivity-keyboard {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Inputs / select styling (keyboard form) */
+#page-add-keyboard #input-code-keyboard,
+#page-add-keyboard #input-name-keyboard,
+#page-add-keyboard #input-brand-keyboard,
+#page-add-keyboard #input-price-keyboard,
+#page-add-keyboard #input-stock-keyboard,
+#page-add-keyboard #input-date-keyboard,
+#page-add-keyboard #input-keys-keyboard,
+#page-add-keyboard #select-sensitivity-keyboard,
+#page-add-keyboard #input-code-case,
+#page-add-keyboard #input-name-case,
+#page-add-keyboard #input-price-case {
+  width: 100%;
+  border-radius: 15px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(36,99,235);
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #0f172a;
+}
+
+/* Buttons */
+#page-add-keyboard #btn-add-keyboard,
+#page-add-keyboard #btn-add-case {
+  width: 100%;
+  height: 34px;
+  border-radius: 15px;
+  background-color: rgb(36,99,235);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+/* Action columns sizing */
+#page-add-keyboard #form-actions-left-keyboard { flex-basis: 75%; }
+#page-add-keyboard #form-actions-right-keyboard { flex-basis: 25%; }
+#page-add-keyboard #form-actions-left-case { flex-basis: 75%; }
+#page-add-keyboard #form-actions-right-case { flex-basis: 25%; }
+
+/* Plugin helper classes kept scoped */
+#page-add-keyboard .gjs-plg-flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+#page-add-keyboard .gjs-plg-flex-row {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+
+/* Digital choice row layout (equivalent to case-choice-row in guitar page) */
+#page-add-keyboard #digital-choice-row {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+#page-add-keyboard #digital-choice-col-digital,
+#page-add-keyboard #digital-choice-col-analog {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Labels that act as radio/buttons — visuals (scoped) */
+#page-add-keyboard label[for="input-digital"],
+#page-add-keyboard label[for="input-analog"],
+#page-add-keyboard #label-digital,
+#page-add-keyboard #label-analog {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+/* (Optional) If you want to highlight when a radio is :checked using adjacent/sibling selectors,
+   keep radios and labels arranged so a sibling combinator can be used. Example selector left as reference:
+#page-add-keyboard #input-digital:checked ~ ... label[for="input-digital"] { ... }
+*/
+
+/* Inputs: accessibility polish */
+#page-add-keyboard #input-code-keyboard:focus,
+#page-add-keyboard #input-name-keyboard:focus,
+#page-add-keyboard #input-brand-keyboard:focus,
+#page-add-keyboard #input-price-keyboard:focus,
+#page-add-keyboard #input-stock-keyboard:focus,
+#page-add-keyboard #input-date-keyboard:focus,
+#page-add-keyboard #input-keys-keyboard:focus,
+#page-add-keyboard #select-sensitivity-keyboard:focus,
+#page-add-keyboard #input-material-keyboard:focus{
+  outline: 3px solid rgba(36,99,235,0.12);
+  outline-offset: 2px;
+}
+
+/* Small polish: stacked layout for potential secondary form inputs too */
+#page-add-keyboard #form-table-case td,
+#page-add-keyboard #form-table-keyboard td {
+  vertical-align: top;
+  padding: 6px 8px;
+}
+
+/* Header shadow limited to page scope */
+#page-add-keyboard #header-inner-row {
+  box-shadow: 0 2px 7px rgba(0,0,0,0.14);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  #page-add-keyboard #form-section-keyboard,
+  #page-add-keyboard #form-section-case {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #page-add-keyboard #hero-title {
+    font-size: 2.2rem;
+  }
+
+  /* action columns stack on small screens */
+  #page-add-keyboard #form-actions-left-keyboard,
+  #page-add-keyboard #form-actions-right-keyboard,
+  #page-add-keyboard #form-actions-left-case,
+  #page-add-keyboard #form-actions-right-case {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  #page-add-keyboard #digital-choice-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  #page-add-keyboard #form-section-keyboard,
+  #page-add-keyboard #form-section-case {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #page-add-keyboard #btn-add-keyboard,
+  #page-add-keyboard #btn-add-case {
+    font-size: 14px;
+    height: 36px;
+  }
+}

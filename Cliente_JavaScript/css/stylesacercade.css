@@ -1,0 +1,210 @@
+/* about.css — estilos page-specific para Acerca de (complementa main.css) */
+
+/* Page background minor tweak */
+#page-about {
+  background-image: linear-gradient(180deg, rgba(59, 130, 245, 0.06), white 14%);
+  color: #475569;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Hero */
+#hero-row {
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+#hero-col {
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+#hero-title {
+  font-size: 2.8rem;
+  color: rgb(36, 99, 235);
+  text-align: center;
+  font-weight: 700;
+}
+
+#hero-paragraph {
+  max-width: 900px;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Feature / team area */
+#feature-section-about {
+  justify-content: center;
+  padding: 0 20px;
+  min-height: 690px;
+}
+
+/* Inner container for the feature column */
+#feature-col-about {
+  max-width: 1200px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Team rows */
+.team-row {
+  width: 100%;
+  max-width: 1100px;
+  gap: 24px;
+  margin: 28px auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+/* Text column inside team */
+#team-text-1,
+#team-text-2,
+#team-text-3 {
+  flex: 1 1 55%;
+  /* default alignment left for desktop, overridden below for members 1 & 3 */
+  text-align: left;
+}
+
+/* Photo column */
+#team-photo-col-1,
+#team-photo-col-2,
+#team-photo-col-3 {
+  flex: 1 1 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Team images */
+#team-photo-1,
+#team-photo-2,
+#team-photo-3 {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Person name and description */
+#team-name-1,
+#team-name-2,
+#team-name-3 {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  color: rgb(36, 99, 235);
+}
+
+#team-desc-1,
+#team-desc-2,
+#team-desc-3 {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #334155;
+}
+
+/* Align name + description of members 1 and 3 to the right on desktop */
+#team-name-1,
+#team-desc-1,
+#team-name-3,
+#team-desc-3,
+#team-text-1,
+#team-text-3 {
+  text-align: right;
+}
+
+/* Reverse layout on mobile control */
+.reverse-on-mobile {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+/* Slight header-card shadow on this page */
+#header-inner-row {
+  box-shadow: 0 2px 7px rgba(0,0,0,0.14);
+}
+
+/* Footer spacing for this page (small override if needed) */
+#footer-row {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+/* Responsive: stack team rows and center images/text on smaller screens */
+@media (max-width: 992px) {
+  .team-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* base centering for stacked layout */
+  }
+
+  .reverse-on-mobile {
+    flex-direction: column-reverse;
+  }
+
+  /* ensure text columns and photo cols take full width and center their content */
+  #team-text-1,
+  #team-text-2,
+  #team-text-3,
+  #team-photo-col-1,
+  #team-photo-col-2,
+  #team-photo-col-3 {
+    flex: 1 1 100%;
+    text-align: center !important; /* force center on mobile */
+  }
+
+  /* Explicitly override childrens' explicit right-alignment (important to beat earlier ID rules) */
+  #team-name-1,
+  #team-desc-1,
+  #team-name-3,
+  #team-desc-3 {
+    text-align: center !important;
+  }
+
+  /* also ensure images are centered */
+  #team-photo-1,
+  #team-photo-2,
+  #team-photo-3 {
+    width: 180px;
+    height: 180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #hero-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  #team-photo-1,
+  #team-photo-2,
+  #team-photo-3 {
+    width: 140px;
+    height: 140px;
+  }
+
+  #hero-paragraph {
+    padding: 0 12px;
+  }
+
+  /* extra safety: force all text centered on very small screens */
+  #team-text-1,
+  #team-text-2,
+  #team-text-3,
+  #team-name-1,
+  #team-desc-1,
+  #team-name-2,
+  #team-desc-2,
+  #team-name-3,
+  #team-desc-3 {
+    text-align: center !important;
+  }
+}

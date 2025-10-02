@@ -1,0 +1,305 @@
+/* stylesactualizarfundas.css — page-specific for Actualizar Funda
+   Asume reglas compartidas en ../../css/main.css
+   Scoped bajo #page-update-funda
+*/
+
+#page-update-funda {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(180deg, rgba(59, 130, 245, 0.11), white 14%);
+  color: #475569;
+}
+
+/* Header */
+#page-update-funda #header-row {
+  justify-content: center;
+  position: sticky;
+  top: 15px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0 20px;
+  background: transparent;
+}
+
+#page-update-funda #header-col {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#page-update-funda #header-inner-row {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(13px);
+  box-shadow: 0 2px 7px rgba(0,0,0,0.14);
+  display: flex;
+}
+
+#page-update-funda #logo-text {
+  padding: 10px;
+  font-family: Impact, Charcoal, sans-serif;
+  color: rgb(36, 99, 235);
+}
+
+/* Nav links (simple, inline list managed by HTML) */
+#page-update-funda #nav-col .gjs-link,
+#page-update-funda #nav-col .gjs-link-box,
+#page-update-funda #nav-col a {
+  padding: 10px 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Page title */
+#page-update-funda #page-title-row {
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+#page-update-funda #page-title-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+#page-update-funda #page-title {
+  font-size: 2.8rem;
+  text-align: center;
+  color: rgb(36, 99, 235);
+  font-weight: 700;
+}
+
+/* Main form */
+#page-update-funda #form-section-update-funda {
+  padding: 50px 150px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+#page-update-funda #form-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Table */
+#page-update-funda #form-table-update-funda {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#page-update-funda #form-table-update-funda td {
+  vertical-align: middle;
+  padding: 8px 6px;
+}
+
+/* Labels */
+#page-update-funda tbody td > div,
+#page-update-funda [id^="label-wrap"] {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #0f172a;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Inputs (incluye el input de búsqueda) */
+#page-update-funda input[type="text"],
+#page-update-funda select {
+  width: 100%;
+  height: 42px;               /* fijamos altura consistente para alinear con el botón */
+  border-radius: 12px;
+  border: 2px solid rgb(36, 99, 235);
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #0f172a;
+  font-size: 1rem;
+  min-width: 0;               /* importante dentro de flex items y celdas */
+}
+
+/* Focus */
+#page-update-funda input:focus,
+#page-update-funda select:focus {
+  outline: 3px solid rgba(36, 99, 235, 0.12);
+  outline-offset: 2px;
+}
+
+/* =======================
+   FILA DE BÚSQUEDA (input + botón)
+   HTML real:
+   <div id="code-search-row" class="gjs-plg-flex-row">
+     <div id="code-search-col" class="gjs-plg-flex-column"> <-- input
+     <div id="code-button-col" class="gjs-plg-flex-column"> <-- botón
+   ======================= */
+#page-update-funda #code-search-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;                /* separa input y botón */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Input column: ocupa el espacio disponible */
+#page-update-funda #code-search-col {
+  flex: 1 1 auto;
+  min-width: 0;            /* evita overflow dentro de celdas/tables */
+}
+
+/* Botón column: ancho fijo para que no se comprima el botón */
+#page-update-funda #code-button-col {
+  flex: 0 0 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botón Buscar (dentro de la fila de búsqueda) */
+#page-update-funda #code-button-col button,
+#page-update-funda #btn-search {
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  background-color: rgb(36, 99, 235);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  padding: 0 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: transform 0.12s ease, background 0.12s ease;
+  box-sizing: border-box;
+}
+
+/* Hover */
+#page-update-funda #btn-search:hover {
+  transform: translateY(-1px);
+  background-color: rgb(29, 78, 216);
+}
+
+/* Fallback — si por alguna razón el contenedor padre no aplica flex, aseguramos separación */
+#page-update-funda td > button#btn-search {
+  margin-left: 12px;
+  width: 140px;
+  height: 42px;
+}
+
+/* Actions row (Actualizar) */
+#page-update-funda #form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#page-update-funda #form-actions-left { flex-basis: 75%; }
+#page-update-funda #form-actions-right {
+  flex-basis: 25%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Botón Actualizar */
+#page-update-funda #btn-update {
+  width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  background-color: rgb(34, 197, 94);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  transition: transform 0.12s ease, background 0.12s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+#page-update-funda #btn-update:hover {
+  transform: translateY(-1px);
+  background-color: rgb(16, 185, 129);
+}
+
+/* Footer */
+#page-update-funda #footer-row {
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+#page-update-funda #footer-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+}
+
+#page-update-funda #footer-text {
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  #page-update-funda #form-section-update-funda {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #page-update-funda #page-title {
+    font-size: 2.2rem;
+  }
+
+  #page-update-funda #form-actions-left,
+  #page-update-funda #form-actions-right {
+    flex-basis: 100%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #page-update-funda #form-actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  #page-update-funda #form-table-update-funda,
+  #page-update-funda #form-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  /* En móvil, apilamos input + botón de búsqueda */
+  #page-update-funda #code-search-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  #page-update-funda #code-button-col {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  #page-update-funda #code-search-col {
+    width: 100%;
+  }
+
+  #page-update-funda #btn-search,
+  #page-update-funda #btn-update {
+    width: 100%;
+    height: 44px;
+  }
+
+  #page-update-funda tbody td > div,
+  #page-update-funda [id^="label-wrap"] {
+    text-align: center;
+  }
+}

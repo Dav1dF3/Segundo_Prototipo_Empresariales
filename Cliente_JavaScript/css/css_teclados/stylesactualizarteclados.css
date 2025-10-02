@@ -1,0 +1,305 @@
+/* stylesactualizarteclados.css — page-specific for Actualizar Teclado
+   Assumes shared rules live in ../../css/main.css
+   Scoped under #page-update-keyboard
+*/
+
+#page-update-keyboard {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(180deg, rgba(59, 130, 245, 0.11), white 14%);
+  color: #475569;
+}
+
+/* Header / nav (page-scoped overrides; main.css handles base layout) */
+#page-update-keyboard #navbar-wrapper {
+  justify-content: center;
+  position: sticky;
+  top: 15px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0 20px;
+  background: transparent;
+}
+
+#page-update-keyboard #navbar-column {
+  width: 100%;
+  max-width: 1200px;
+}
+
+#page-update-keyboard #navbar-row {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(13px);
+  box-shadow: 0 2px 7px rgba(0,0,0,0.14);
+}
+
+#page-update-keyboard #navbar-logo-link { display: block; }
+
+#page-update-keyboard #navbar-logo-text {
+  padding: 10px;
+  font-family: Impact, Charcoal, sans-serif;
+  color: rgb(36, 99, 235);
+}
+
+/* Nav links */
+#page-update-keyboard #navbar-links-col a,
+#page-update-keyboard #navbar-about-col a,
+#page-update-keyboard #navbar-link-home,
+#page-update-keyboard #navbar-link-instruments,
+#page-update-keyboard #navbar-link-inventory,
+#page-update-keyboard #navbar-link-about {
+  padding: 10px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Page title / hero */
+#page-update-keyboard #page-title-row {
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+#page-update-keyboard #page-title-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+#page-update-keyboard #page-title {
+  font-size: 2.8rem;
+  text-align: center;
+  color: rgb(36, 99, 235);
+  font-weight: 700;
+}
+
+/* Main form section */
+#page-update-keyboard #form-section-update {
+  padding: 50px 150px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+#page-update-keyboard #form-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Table / form */
+#page-update-keyboard #form-table-update {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Label wrappers & spacing */
+#page-update-keyboard tbody td > div,
+#page-update-keyboard .label-wrap {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #0f172a;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Inputs and selects — consistent visual language */
+#page-update-keyboard input[type="text"],
+#page-update-keyboard select {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid rgb(36, 99, 235);
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+/* ===== Search row layout (matches real HTML structure) =====
+   #code-search-row > #code-search-col (input) + #code-button-col (button)
+*/
+#page-update-keyboard #code-search-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Input column fills remaining space */
+#page-update-keyboard #code-search-col {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Button column fixed width for consistent look */
+#page-update-keyboard #code-button-col {
+  flex: 0 0 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Search button styling */
+#page-update-keyboard #code-button-col button,
+#page-update-keyboard #btn-search {
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  background-color: rgb(36, 99, 235);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  padding: 0 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+#page-update-keyboard #btn-search:hover {
+  transform: translateY(-1px);
+  background-color: rgb(29, 78, 216);
+}
+
+/* Fallback if button is placed directly in a td */
+#page-update-keyboard td > button#btn-search {
+  width: 140px;
+  height: 42px;
+}
+
+/* Actions row (Actualizar) */
+#page-update-keyboard #form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#page-update-keyboard #form-actions-left { flex-basis: 75%; }
+
+#page-update-keyboard #form-actions-right {
+  flex-basis: 25%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Update button styling */
+#page-update-keyboard #btn-update {
+  width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  background-color: rgb(34, 197, 94); /* green for save/update */
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: background 0.15s ease, transform 0.12s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+#page-update-keyboard #btn-update:hover {
+  transform: translateY(-1px);
+  background-color: rgb(16, 185, 129);
+}
+
+/* Table spacing */
+#page-update-keyboard #form-table-update td {
+  vertical-align: middle;
+  padding: 8px 6px;
+}
+
+/* Focus polish */
+#page-update-keyboard input:focus,
+#page-update-keyboard select:focus {
+  outline: 3px solid rgba(36, 99, 235, 0.12);
+  outline-offset: 2px;
+}
+
+/* Footer */
+#page-update-keyboard #footer-row {
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+#page-update-keyboard #footer-col {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+}
+
+#page-update-keyboard #footer-text {
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  #page-update-keyboard #form-section-update {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #page-update-keyboard #page-title {
+    font-size: 2.2rem;
+  }
+
+  /* action columns stack on smaller screens */
+  #page-update-keyboard #form-actions-left,
+  #page-update-keyboard #form-actions-right {
+    flex-basis: 100%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #page-update-keyboard #form-actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  /* ensure table / inputs are fluid */
+  #page-update-keyboard #form-table-update,
+  #page-update-keyboard #form-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  #page-update-keyboard #form-section-update {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* On mobile, stack input and search button */
+  #page-update-keyboard #code-search-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  #page-update-keyboard #code-button-col {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  #page-update-keyboard #code-search-col {
+    width: 100%;
+  }
+
+  #page-update-keyboard #btn-search,
+  #page-update-keyboard #btn-update {
+    width: 100%;
+    height: 44px;
+  }
+
+  #page-update-keyboard tbody td > div,
+  #page-update-keyboard .label-wrap {
+    text-align: center;
+  }
+}

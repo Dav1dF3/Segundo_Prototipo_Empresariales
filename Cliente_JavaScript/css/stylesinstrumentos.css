@@ -1,0 +1,188 @@
+/* --- Page-specific styles for Instrumentos (instruments.css) --- */
+
+/* Page container / background */
+#page-instruments {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(180deg, rgba(59, 130, 245, 0.11), white 14%);
+  background-position: 0 0;
+  background-size: 100% 100%;
+  background-repeat: repeat;
+  color: #475569;
+}
+
+/* Hero / page header area */
+#hero-row {
+  justify-content: center;
+  padding: 80px 20px 80px 20px;
+}
+
+#hero-col {
+  max-width: 1200px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#hero-title {
+  font-size: 3rem;
+  text-align: center;
+  color: rgb(36, 99, 235);
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+}
+
+/* content row width */
+#content-row {
+  width: 100%;
+}
+
+/* Guitars column card */
+#guitars-col {
+  flex-basis: 98.02%;
+  border: 2px solid rgb(36, 99, 235);
+  position: relative;
+  border-radius: 15px;
+  padding: 16px;
+}
+
+/* Keyboards column card */
+#keyboards-col {
+  flex-basis: 96.98%;
+  position: relative;
+  border: 2px solid rgb(36, 99, 235);
+  border-radius: 15px;
+  padding: 16px;
+}
+
+/* Titles inside columns */
+#guitars-title,
+#keyboards-title,
+#cases-label,
+#presets-inner-label {
+  text-align: center;
+  color: rgb(36, 99, 235);
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+/* Sub-columns and wrappers */
+#guitars-sub-row,
+#keyboards-sub-row,
+#sub-row-inner,
+#keyboards-empty-row,
+#igivnl,
+#i9ghje {
+  width: 100%;
+}
+
+/* spacer */
+#spacer-col {
+  flex-basis: 5%;
+  position: relative;
+}
+
+/* empty column placeholders */
+#empty-col,
+#keyboards-empty-col,
+#i9g1la {
+  flex-basis: 100%;
+  height: 2px;
+}
+
+/* Buttons with the primary blue style (page-specific override) */
+/* Instead of repeating the full block per id, we apply a shared helper
+   and then keep specific ids only if you need unique tweaks. */
+.btn-listar--primary,
+.btn-listar.primary {
+  color: #fff;
+  background-color: rgb(36, 99, 235);
+  border-radius: 15px;
+}
+
+/* Map existing specific IDs to use the shared primary class (recommended).
+   These rules replicate originally generated per-id styles as fallbacks. */
+
+#btn-list-guitars,
+#btn-add-guitars,
+#btn-search-guitars,
+#btn-update-guitars,
+#btn-delete-guitars,
+#btn-list-keyboards,
+#btn-add-keyboards,
+#btn-search-keyboards,
+#btn-update-keyboards,
+#btn-delete-keyboards,
+#btn-add-cases,
+#btn-update-cases,
+#btn-delete-cases,
+#btn-save-preset,
+#btn-load-preset {
+  color: rgba(255,255,255,1);
+  background-color: rgb(36, 99, 235);
+  border-radius: 15px;
+  border-color: rgb(36,99,235);
+  padding: 6px 12px;
+}
+
+/* Table used in instruments pages (if present) */
+#miTabla thead th {
+  position: sticky;
+  top: 0;
+  background: rgb(36, 99, 235);
+  color: #fff;
+  padding: 10px;
+}
+
+#miTabla td,
+#miTabla th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* Smaller typographic adjustments */
+#i3z21z-2,
+#i59m6a,
+#i3z21z-2-4 {
+  font-size: 18pt;
+}
+
+/* Footer padding overrides for this page (kept from original) */
+#footer-row {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Smaller copyright style */
+#footer-copyright {
+  padding: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 20px;
+  opacity: 0.75;
+}
+
+/* Additional cosmetic rules from original CSS */
+#guitar-cases-col,
+#guitars-sub-row {
+  width: 100%;
+}
+
+/* Slightly stronger header-card shadow on this page */
+#header-inner-row {
+  box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+}
+
+/* Media queries (page specific tweaks) */
+@media (max-width: 992px) {
+  /* preserve stacking on smaller screens */
+  #it00l-2, #iyd2-2 { flex-direction: row; } /* kept for compatibility if present */
+}
+
+@media (max-width: 768px) {
+  /* if nav is hidden at this width, keep layout workable */
+  /* no page-specific changes beyond main.css for now */
+}
