@@ -74,7 +74,7 @@ function mapSensibilidad(valor) {
     switch (valor) {
         case "none": return "Ninguna";
         case "basic": return "Básica";
-        case "medium": return "Media";
+        case "medium": return "Intermedia";
         case "high": return "Alta";
         case "pro": return "Profesional";
         default: return "-";
