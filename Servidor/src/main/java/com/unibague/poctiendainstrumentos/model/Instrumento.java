@@ -6,8 +6,10 @@ package com.unibague.poctiendainstrumentos.model;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import java.time.LocalDate;
 
@@ -40,38 +42,47 @@ import java.time.LocalDate;
         @JsonSubTypes.Type(value = Guitarra.class, name = "guitarra"),
         @JsonSubTypes.Type(value = Teclado.class, name = "teclado")
 })
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Instrumento
 {
     /**
      * Código único que identifica el instrumento.
      */
-    private String codigo;
+    @Id
+    private long codigo;
 
     /**
      * Nombre o modelo del instrumento.
      */
+    @Column(nullable = false)
     private String nombre;
 
     /**
      * Marca fabricante del instrumento.
      */
+    @Column(nullable = false)
     private String marca;
 
     /**
      * Precio base del instrumento.
      * No puede ser negativo.
      */
+    @Column(nullable = false)
     private double precioBase;
 
     /**
      * Cantidad disponible en stock.
      * No puede ser negativa.
      */
+    @Column(nullable = false)
     private int stock;
 
     /**
      * Fecha en que se ingresó el instrumento al inventario.
      */
+    @Column(nullable = false)
     private LocalDate fechaIngreso;
 
     /**
@@ -84,7 +95,7 @@ public abstract class Instrumento
      * @param stock cantidad disponible, no negativa
      * @param fechaIngreso fecha de ingreso al inventario
      */
-    public Instrumento(String codigo, String nombre, String marca, double precioBase, int stock, LocalDate fechaIngreso){
+    public Instrumento(long codigo, String nombre, String marca, double precioBase, int stock, LocalDate fechaIngreso){
         this.codigo = codigo;
         this.nombre = nombre;
         this.marca = marca;

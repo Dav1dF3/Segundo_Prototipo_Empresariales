@@ -5,6 +5,10 @@
 package com.unibague.poctiendainstrumentos.model;
 
 import com.unibague.poctiendainstrumentos.model.enums.SensibilidadTeclado;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,21 +34,26 @@ import java.time.LocalDate;
  */
 @Data
 @NoArgsConstructor
+@Entity
 public class Teclado extends Instrumento implements IProgramable
 {
     /**
      * Número de teclas del teclado.
      */
+    @Column(nullable = false)
     private int numeroTeclas;
 
     /**
      * Indica si el teclado es digital o no.
      */
+    @Column(nullable = false)
     private boolean digital;
 
     /**
      * Indica la sensibilidad del teclado.
      */
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private SensibilidadTeclado sensibilidad;
 
     /**
@@ -60,7 +69,7 @@ public class Teclado extends Instrumento implements IProgramable
      * @param digital verdadero si es digital
      * @param sensibilidad sensibilidad del teclado
      */
-    public Teclado(String codigo, String nombre, String marca, double precioBase, int stock, LocalDate fechaIngreso,
+    public Teclado(long codigo, String nombre, String marca, double precioBase, int stock, LocalDate fechaIngreso,
             int numeroTeclas, boolean digital, SensibilidadTeclado sensibilidad) {
         super(codigo, nombre, marca, precioBase, stock, fechaIngreso);
         setNumeroTeclas(numeroTeclas);

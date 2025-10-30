@@ -5,6 +5,7 @@
 package com.unibague.poctiendainstrumentos.model;
 
 import com.unibague.poctiendainstrumentos.model.enums.TipoGuitarra;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -33,21 +34,27 @@ import java.util.stream.Stream;
  */
 @Data
 @NoArgsConstructor
+@Entity
+@PrimaryKeyJoinColumn(name = "codigo")
 public class Guitarra extends Instrumento
 {
     /**
      * Tipo de guitarra (eléctrica, acústica, clásica, etc.).
      */
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TipoGuitarra tipo;
 
     /**
      * Material con el que está fabricado el cuerpo de la guitarra.
      */
+    @Column(nullable = false)
     private String materialCuerpo;
 
     /**
      * Lista de fundas asociadas a la guitarra.
      */
+    @OneToMany(mappedBy = "guitarra", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Funda> fundas = new ArrayList<>();
 
     /**
@@ -62,7 +69,7 @@ public class Guitarra extends Instrumento
      * @param tipo tipo de guitarra
      * @param materialCuerpo material del cuerpo
      */
-    public Guitarra(String codigo, String nombre, String marca, double precioBase, int stock, LocalDate fechaIngreso,
+    public Guitarra(long codigo, String nombre, String marca, double precioBase, int stock, LocalDate fechaIngreso,
             TipoGuitarra tipo, String materialCuerpo) {
         super(codigo, nombre, marca, precioBase, stock, fechaIngreso);
         this.tipo = tipo;
@@ -91,14 +98,15 @@ public class Guitarra extends Instrumento
      * @param fundas lista de fundas a agregar
      */
     public void agregarFundas(List<Funda> fundas) {
-        if (fundas == null) return;
-        else {
+        if (fundas == null) {
+            throw new IllegalArgumentException("Las fundas no pueden ser nulas");
+        }
             this.fundas = new ArrayList<>(
                     Stream.concat(this.fundas.stream(), fundas.stream())
                             .distinct()
                             .toList()
             );
-        }
+            fundas.forEach(f -> f.setGuitarra(this));
     }
 
     /**
@@ -107,9 +115,9 @@ public class Guitarra extends Instrumento
      * @param codigo código de la funda a buscar
      * @return Optional con la funda si se encuentra, o vacío si no
      */
-    public Optional<Funda> buscarFunda(String codigo) {
+    public Optional<Funda> buscarFunda(long codigo) {
         return fundas.stream()
-                .filter(i -> codigo.equalsIgnoreCase(i.getCodigo()))
+                .filter(i -> codigo == i.getCodigo())
                 .findFirst();
     }
 
@@ -120,11 +128,12 @@ public class Guitarra extends Instrumento
      * @param codigo código de la funda a eliminar
      * @throws NoSuchElementException si no se encuentra la funda
      */
-    public void eliminarFunda(String codigo) {
+    public void eliminarFunda(long codigo) {
          Optional<Funda> funda = buscarFunda(codigo);
         if (funda.isPresent())
         {
             fundas.remove(funda.get());
+            funda.get().setGuitarra(null);
         }
         else
         {
@@ -140,8 +149,9 @@ public class Guitarra extends Instrumento
      * @param funda nuevos datos de la funda
      * @throws NoSuchElementException si no se encuentra la funda
      */
-    public void editarFunda(String codigo, Funda funda)
+    public void editarFunda(long codigo, Funda funda)
     {
+        funda.setGuitarra(this);
         Optional<Funda> fundaAEditar = buscarFunda(codigo);
         if (fundaAEditar.isPresent())
         {

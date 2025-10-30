@@ -1,6 +1,7 @@
 package com.unibague.poctiendainstrumentos.handler;
 
 import com.unibague.poctiendainstrumentos.dto.ApiResponse;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -80,6 +81,12 @@ public class GlobalExceptionHandler
      */
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<ApiResponse> handleBadRequest(IllegalStateException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new ApiResponse(true, e.getMessage()));
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class )
+    public ResponseEntity<ApiResponse> handleDataIntegrityViolation(DataIntegrityViolationException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(new ApiResponse(true, e.getMessage()));
     }

@@ -5,6 +5,7 @@
 package com.unibague.poctiendainstrumentos.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,28 +28,34 @@ import java.util.Objects;
  */
 @Data
 @NoArgsConstructor
+@Entity
 public class Funda
 {
     /**
      * Código único de la funda.
      */
-    private String codigo;
+    @Id
+    private long codigo;
 
     /**
      * Nombre descriptivo de la funda.
      */
+    @Column(nullable = false)
     private String nombre;
 
     /**
      * Precio de la funda.
      * Debe ser un valor no negativo.
      */
+    @Column(nullable = false)
     private double precio;
 
     /**
      * Referencia a la guitarra propietaria de la funda.
      * Se ignora durante la serialización JSON para evitar referencias circulares.
      */
+    @ManyToOne
+    @JoinColumn(name = "guitarra_codigo")
     @JsonIgnore
     private Guitarra guitarra;
 
@@ -60,12 +67,11 @@ public class Funda
      * @param precio precio de la funda, no negativo
      * @param guitarra guitarra propietaria de la funda
      */
-    public Funda(String codigo, String nombre, double precio, Guitarra guitarra) {
+    public Funda(long codigo, String nombre, double precio, Guitarra guitarra) {
         this.codigo = codigo;
         this.nombre = nombre;
         setPrecio(precio);
         this.guitarra = guitarra;
-
     }
 
     /**

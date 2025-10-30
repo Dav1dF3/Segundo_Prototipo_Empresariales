@@ -15,6 +15,13 @@ import com.unibague.poctiendainstrumentos.model.Funda;
 import com.unibague.poctiendainstrumentos.model.Guitarra;
 import com.unibague.poctiendainstrumentos.model.Instrumento;
 import com.unibague.poctiendainstrumentos.model.Teclado;
+import com.unibague.poctiendainstrumentos.repository.FundaRepository;
+import com.unibague.poctiendainstrumentos.repository.GuitarraRepository;
+import com.unibague.poctiendainstrumentos.repository.InstrumentoRepository;
+import com.unibague.poctiendainstrumentos.repository.TecladoRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -61,36 +68,18 @@ import java.util.function.Predicate;
 @Service
 public class ServicioInstrumento implements IServicioInstrumento {
 
-    /**
-     * Lista centralizada de todos los instrumentos gestionados.
-     */
-    private List<Instrumento> instrumentos;
+    @Autowired
+    private InstrumentoRepository instrumentoRepository;
 
-    /**
-     * Instancia única del servicio (patrón Singleton).
-     */
-    private static ServicioInstrumento instancia;
+    @Autowired
+    private TecladoRepository tecladoRepository;
 
-    /**
-     * Constructor privado (patrón Singleton).
-     * Inicializa la lista vacía de instrumentos.
-     */
-    private ServicioInstrumento() {
-        this.instrumentos = new ArrayList<>();
-    }
+    @Autowired
+    private GuitarraRepository guitarraRepository;
 
-    /**
-     * Devuelve la instancia única del servicio.
-     * Usa sincronización para ser seguro en hilos.
-     *
-     * @return instancia única de ServicioInstrumento
-     */
-    public static synchronized ServicioInstrumento getInstance() {
-        if (instancia == null) {
-            instancia = new ServicioInstrumento();
-        }
-        return instancia;
-    }
+    @Autowired
+    private FundaRepository fundaRepository;
+
 
     /**
      * Agrega un instrumento a la colección.
@@ -99,29 +88,17 @@ public class ServicioInstrumento implements IServicioInstrumento {
      *
      * @param instrumento Instrumento a agregar.
      * @throws IllegalArgumentException si el instrumento es nulo.
-     * @throws IllegalStateException si ya existe un instrumento con ese código.
      */
     @Override
+    @Transactional
     public void agregarInstrumento(Instrumento instrumento) {
         if (instrumento == null) {
             throw new IllegalArgumentException("El instrumento no puede ser nulo");
         }
-
-        buscarInstrumento(instrumento.getCodigo())
-                .ifPresent(i -> {
-                    throw new IllegalStateException("Ya existe un instrumento con este código");
-                });
-
-        if(instrumento instanceof Guitarra guitarra) {
-            if(guitarra.getFundas() != null) {
-                for(Funda funda : guitarra.getFundas()) {
-                    funda.setGuitarra(guitarra);
-                }
-            }
-            instrumentos.add(guitarra);
-        } else {
-            instrumentos.add(instrumento);
+        if (instrumentoRepository.existsById(instrumento.getCodigo())) {
+            throw new DataIntegrityViolationException("El instrumento ya existe");
         }
+        instrumentoRepository.save(instrumento);
     }
 
     /**
@@ -131,8 +108,9 @@ public class ServicioInstrumento implements IServicioInstrumento {
      * @return lista inmutable de instrumentos.
      */
     @Override
+    @Transactional
     public List<Instrumento> listarInstrumentos() {
-        return Collections.unmodifiableList(instrumentos);
+        return Collections.unmodifiableList(instrumentoRepository.findAll());
     }
 
     /**
@@ -141,14 +119,9 @@ public class ServicioInstrumento implements IServicioInstrumento {
      * @return lista de guitarras.
      */
     @Override
+    @Transactional
     public List<Guitarra> listarGuitarras() {
-        List<Guitarra> guitarras = new ArrayList<>();
-        for (Instrumento instrumento : instrumentos) {
-            if (instrumento instanceof Guitarra) {
-                guitarras.add((Guitarra) instrumento);
-            }
-        }
-        return guitarras;
+        return Collections.unmodifiableList(guitarraRepository.findAll());
     }
 
     /**
@@ -157,14 +130,9 @@ public class ServicioInstrumento implements IServicioInstrumento {
      * @return lista de teclados.
      */
     @Override
+    @Transactional
     public List<Teclado> listarTeclados() {
-        List<Teclado> teclados = new ArrayList<>();
-        for (Instrumento instrumento : instrumentos) {
-            if (instrumento instanceof Teclado) {
-                teclados.add((Teclado) instrumento);
-            }
-        }
-        return teclados;
+       return Collections.unmodifiableList(tecladoRepository.findAll());
     }
 
     /**
@@ -174,10 +142,9 @@ public class ServicioInstrumento implements IServicioInstrumento {
      * @return Optional con el instrumento si existe
      */
     @Override
-    public Optional<Instrumento> buscarInstrumento(String codigo) {
-        return instrumentos.stream()
-                .filter(i -> codigo.equalsIgnoreCase(i.getCodigo()))
-                .findFirst();
+    @Transactional
+    public Optional<Instrumento> buscarInstrumento(long codigo) {
+        return instrumentoRepository.findById(codigo);
     }
 
     /**
@@ -188,13 +155,13 @@ public class ServicioInstrumento implements IServicioInstrumento {
      * @throws NoSuchElementException si no existe instrumento con ese código
      */
     @Override
-    public void editarInstrumento(String codigo, Instrumento instrumento) {
-        Optional<Instrumento> instrumentoAEditar = buscarInstrumento(codigo);
-        if (instrumentoAEditar.isPresent()) {
-            instrumentos.set(instrumentos.indexOf(instrumentoAEditar.get()), instrumento);
-        } else {
+    @Transactional
+    public void editarInstrumento(long codigo, Instrumento instrumento) {
+        if (!instrumentoRepository.existsById(codigo)) {
             throw new NoSuchElementException("No se encontró un instrumento con el código: " + codigo);
         }
+        instrumento.setCodigo(codigo);
+        instrumentoRepository.save(instrumento);
     }
 
     /**
@@ -204,13 +171,12 @@ public class ServicioInstrumento implements IServicioInstrumento {
      * @throws NoSuchElementException si no existe instrumento con ese código
      */
     @Override
-    public void eliminarInstrumento(String codigo) {
-        Optional<Instrumento> instrumentoAEliminar = buscarInstrumento(codigo);
-        if (instrumentoAEliminar.isPresent()) {
-            instrumentos.remove(instrumentoAEliminar.get());
-        } else {
+    @Transactional
+    public void eliminarInstrumento(long codigo) {
+        if (!instrumentoRepository.existsById(codigo)) {
             throw new NoSuchElementException("No se encontró un instrumento con el código: " + codigo);
         }
+        instrumentoRepository.deleteById(codigo);
     }
 
     /**
@@ -222,20 +188,34 @@ public class ServicioInstrumento implements IServicioInstrumento {
      * @throws IllegalArgumentException si el código no corresponde a una guitarra
      */
     @Override
-    public void agregarFundas(String codigoGuitarra, List<Funda> fundas)
+    @Transactional
+    public void agregarFundas(long codigoGuitarra, List<Funda> fundas)
     {
-        Optional<Instrumento> instrumento = buscarInstrumento(codigoGuitarra);
-        if(instrumento.isPresent())
-        {
-            if (instrumento.get() instanceof Guitarra guitarra) {
-                guitarra.agregarFundas(fundas);
-            }else
-            {
-                throw new IllegalArgumentException("El código debe ser de una guitarra");
-            }
-        }else {
+        if (fundas == null || fundas.isEmpty()) {
+            throw new IllegalArgumentException("La lista de fundas no puede ser nula ni vacía");
+        }
+
+        Optional<Guitarra> guitarra = guitarraRepository.findById(codigoGuitarra);
+        if (guitarra.isEmpty()) {
             throw new NoSuchElementException("No se encontró una guitarra con el código: " + codigoGuitarra);
         }
+
+        guitarra.get().agregarFundas(fundas);
+
+        guitarraRepository.save(guitarra.get());
+    }
+
+    @Override
+    @Transactional
+    public List<Funda> listarFundas() {
+        return Collections.unmodifiableList(fundaRepository.findAll());
+    }
+
+    @Override
+    @Transactional
+    public Optional<Funda> buscarFunda(long codigoFunda)
+    {
+        return fundaRepository.findById(codigoFunda);
     }
 
     /**
@@ -248,19 +228,18 @@ public class ServicioInstrumento implements IServicioInstrumento {
      * @throws IllegalArgumentException si el código no corresponde a una guitarra
      */
     @Override
-    public void editarFunda(String codigoGuitarra, String codigoFunda, Funda funda) {
-        Optional<Instrumento> instrumento = buscarInstrumento(codigoGuitarra);
-        if(instrumento.isPresent())
-        {
-            if (instrumento.get() instanceof Guitarra guitarra) {
-                guitarra.editarFunda(codigoFunda, funda);
-            }else
-            {
-                throw new IllegalArgumentException("El código debe ser de una guitarra");
-            }
-        }else {
+    @Transactional
+    public void editarFunda(long codigoGuitarra, long codigoFunda, Funda funda) {
+        if (funda == null) {
+            throw new IllegalArgumentException("La funda no puede ser nula");
+        }
+        Optional<Guitarra> guitarra = guitarraRepository.findById(codigoGuitarra);
+        if (guitarra.isEmpty()) {
             throw new NoSuchElementException("No se encontró una guitarra con el código: " + codigoGuitarra);
         }
+        guitarra.get().editarFunda(codigoFunda, funda);
+
+        guitarraRepository.save(guitarra.get());
     }
 
     /**
@@ -272,20 +251,18 @@ public class ServicioInstrumento implements IServicioInstrumento {
      * @throws IllegalArgumentException si el código no corresponde a una guitarra
      */
     @Override
-    public void eliminarFunda(String codigoGuitarra, String codigoFunda) {
-        Optional<Instrumento> instrumento = buscarInstrumento(codigoGuitarra);
-        if(instrumento.isPresent())
-        {
-            if (instrumento.get() instanceof Guitarra guitarra) {
-                guitarra.eliminarFunda(codigoFunda);
-            }else
-            {
-                throw new IllegalArgumentException("El código debe ser de una guitarra");
-            }
-        }else {
+    @Transactional
+    public void eliminarFunda(long codigoGuitarra, long codigoFunda) {
+        Optional<Guitarra> guitarra = guitarraRepository.findById(codigoGuitarra);
+        if (guitarra.isEmpty()) {
             throw new NoSuchElementException("No se encontró una guitarra con el código: " + codigoGuitarra);
         }
+        guitarra.get().eliminarFunda(codigoFunda);
+
+        guitarraRepository.save(guitarra.get());
     }
+
+
 
     /**
      * Filtra la lista de instrumentos según los criterios proporcionados en un DTO.
@@ -296,35 +273,7 @@ public class ServicioInstrumento implements IServicioInstrumento {
      */
     @Override
     public List<Instrumento> filtrarInstrumentos(FiltroInstrumentoDTO filtro) {
-        Predicate<Instrumento> predicado = i -> true;
-
-        if (filtro.getNombre() != null) {
-            predicado = predicado.and(i -> i.getNombre().toLowerCase().contains(filtro.getNombre().toLowerCase()));
-        }
-        if (filtro.getMarca() != null) {
-            predicado = predicado.and(i -> i.getMarca().equalsIgnoreCase(filtro.getMarca()));
-        }
-        if (filtro.getPrecioMin() != null) {
-            predicado = predicado.and(i -> i.getPrecioBase() >= filtro.getPrecioMin());
-        }
-        if (filtro.getPrecioMax() != null) {
-            predicado = predicado.and(i -> i.getPrecioBase() <= filtro.getPrecioMax());
-        }
-        if (filtro.getStockMin() != null) {
-            predicado = predicado.and(i -> i.getStock() >= filtro.getStockMin());
-        }
-        if (filtro.getStockMax() != null) {
-            predicado = predicado.and(i -> i.getStock() <= filtro.getStockMax());
-        }
-        if (filtro.getTipoGuitarra() != null) {
-            predicado = predicado.and(i -> (i instanceof Guitarra guitarra) && guitarra.getTipo() == filtro.getTipoGuitarra());
-        }
-        if (filtro.getSensibilidad() != null) {
-            predicado = predicado.and(i -> (i instanceof Teclado teclado) && teclado.getSensibilidad() == filtro.getSensibilidad());
-        }
-
-        return instrumentos.stream()
-                .filter(predicado)
-                .toList();
+        //PENDIENTE
+        return null;
     }
 }

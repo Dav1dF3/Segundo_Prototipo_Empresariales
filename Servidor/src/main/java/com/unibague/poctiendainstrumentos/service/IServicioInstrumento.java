@@ -68,7 +68,7 @@ public interface IServicioInstrumento {
      * @param codigo código alfanumérico identificador
      * @return Optional con el instrumento, o vacío si no existe
      */
-    Optional<Instrumento> buscarInstrumento(String codigo);
+    Optional<Instrumento> buscarInstrumento(long codigo);
 
     /**
      * Edita un instrumento existente identificado por código.
@@ -77,7 +77,7 @@ public interface IServicioInstrumento {
      * @param instrumento nuevo objeto con la información actualizada
      * @throws NoSuchElementException si no existe instrumento con ese código
      */
-    void editarInstrumento(String codigo, Instrumento instrumento);
+    void editarInstrumento(long codigo, Instrumento instrumento);
 
     /**
      * Elimina un instrumento identificado por código.
@@ -85,7 +85,7 @@ public interface IServicioInstrumento {
      * @param codigo código del instrumento a eliminar
      * @throws NoSuchElementException si no existe instrumento con ese código
      */
-    void eliminarInstrumento(String codigo);
+    void eliminarInstrumento(long codigo);
 
     /**
      * Agrega una lista de fundas a la guitarra con el código dado.
@@ -95,7 +95,11 @@ public interface IServicioInstrumento {
      * @throws NoSuchElementException si no existe la guitarra
      * @throws IllegalArgumentException si el código no corresponde a una guitarra
      */
-    void agregarFundas(String codigoGuitarra, List<Funda> fundas);
+    void agregarFundas(long codigoGuitarra, List<Funda> fundas);
+
+    List<Funda> listarFundas();
+
+    Optional<Funda> buscarFunda(long codigoFunda);
 
     /**
      * Edita una funda identificada dentro de una guitarra dada.
@@ -106,7 +110,7 @@ public interface IServicioInstrumento {
      * @throws NoSuchElementException si no se encuentra la guitarra o funda
      * @throws IllegalArgumentException si el código no corresponde a una guitarra
      */
-    void editarFunda(String codigoGuitarra, String codigoFunda, Funda funda);
+    void editarFunda(long codigoGuitarra, long codigoFunda, Funda funda);
 
     /**
      * Elimina una funda identificada dentro de una guitarra dada.
@@ -116,7 +120,7 @@ public interface IServicioInstrumento {
      * @throws NoSuchElementException si no se encuentra la guitarra o funda
      * @throws IllegalArgumentException si el código no corresponde a una guitarra
      */
-    void eliminarFunda(String codigoGuitarra, String codigoFunda);
+    void eliminarFunda(long codigoGuitarra, long codigoFunda);
 
     /**
      * Filtra la lista de instrumentos según los parámetros especificados
