@@ -1,0 +1,230 @@
+/* stylesagregarfundas.css — page-specific for Agregar Fundas
+   Asume reglas compartidas en ../../css/main.css
+   Scoped under #page-search-fundas
+*/
+
+#page-search-fundas {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(180deg, rgba(59, 130, 245, 0.11), white 14%);
+  color: #475569;
+}
+
+/* Header / nav (light overrides; main.css has the layout) */
+#page-search-fundas #navbar-wrapper {
+  justify-content: center;
+  position: sticky;
+  top: 15px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0 20px;
+  background: transparent;
+}
+
+#page-search-fundas #navbar-column { width: 100%; max-width: 1200px; }
+
+#page-search-fundas #navbar-row {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(13px);
+  box-shadow: 0 2px 7px rgba(0,0,0,0.14);
+}
+
+#page-search-fundas #navbar-logo-link { display: block; }
+
+#page-search-fundas #navbar-logo-text {
+  padding: 10px;
+  font-family: Impact, Charcoal, sans-serif;
+  color: rgb(36, 99, 235);
+}
+
+/* Nav link padding */
+#page-search-fundas #navbar-links-col a,
+#page-search-fundas #navbar-about-col a,
+#page-search-fundas #navbar-link-home,
+#page-search-fundas #navbar-link-instruments,
+#page-search-fundas #navbar-link-inventory,
+#page-search-fundas #navbar-link-about {
+  padding: 10px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Page title / hero */
+#page-search-fundas #page-title-row {
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+#page-search-fundas #page-title-col {
+  max-width: 1200px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+
+#page-search-fundas #page-title {
+  font-size: 2.8rem;
+  text-align: center;
+  color: rgb(36, 99, 235);
+  font-weight: 700;
+}
+
+/* Main form section */
+#page-search-fundas #form-section-search {
+  padding: 50px 150px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+#page-search-fundas #form-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Table / form */
+#page-search-fundas #form-table-search {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Label wrappers */
+#page-search-fundas tbody td > div,
+#page-search-fundas .label-wrap {
+  padding: 10px;
+  box-sizing: border-box;
+  color: #0f172a;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Inputs — match site visual language */
+#page-search-fundas input[type="text"],
+#page-search-fundas select {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid rgb(36, 99, 235);
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+/* Small helper: input focus */
+#page-search-fundas input:focus,
+#page-search-fundas select:focus {
+  outline: 3px solid rgba(36, 99, 235, 0.12);
+  outline-offset: 2px;
+}
+
+/* Actions row: Add button placement (75/25 layout like other pages) */
+#page-search-fundas #form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#page-search-fundas #form-actions-left { flex-basis: 75%; }
+#page-search-fundas #form-actions-right {
+  flex-basis: 25%;
+  display:flex;
+  justify-content:flex-end;
+}
+
+/* search button */
+#page-search-fundas #btn-search {
+  width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  background-color: rgb(36, 99, 235);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  box-sizing: border-box;
+  transition: transform 0.12s ease, background 0.12s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+#page-search-fundas #btn-search:hover {
+  transform: translateY(-1px);
+  background-color: rgb(29, 78, 216);
+}
+
+/* Table spacing */
+#page-search-fundas #form-table-search td {
+  vertical-align: middle;
+  padding: 8px 6px;
+}
+
+/* Footer */
+#page-search-fundas #footer-row {
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+#page-search-fundas #footer-col {
+  max-width: 1200px;
+  display:flex;
+  flex-direction:column;
+  padding-top:16px;
+}
+
+#page-search-fundas #footer-text {
+  text-align:center;
+  font-size:0.8rem;
+  opacity:0.75;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  #page-search-fundas #form-section-search {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #page-search-fundas #page-title {
+    font-size: 2.2rem;
+  }
+
+  #page-search-fundas #form-actions-left,
+  #page-search-fundas #form-actions-right {
+    flex-basis: 100%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #page-search-fundas #form-actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 576px) {
+  #page-search-fundas #form-section-search {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #page-search-fundas #btn-search {
+    width: 100%;
+    height: 44px;
+  }
+
+  #page-search-fundas tbody td > div,
+  #page-search-fundas .label-wrap {
+    text-align: center;
+  }
+}
