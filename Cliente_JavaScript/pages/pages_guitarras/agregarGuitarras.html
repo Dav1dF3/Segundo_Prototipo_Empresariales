@@ -1,224 +1,225 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Instrumentos - Agregar Guitarra</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="robots" content="index,follow" />
-    <meta name="generator" content="GrapesJS Studio" />
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/css_guitarras/stylesagregarguitarras.css">
-    <link rel="stylesheet" type= "text/css" href="../../jquery-ui-1.14.1.custom/jquery-ui.css">
-    <script src="../../jquery-3.7.1.min.js"></script>
-    <script src="../../jquery-ui-1.14.1.custom/jquery-ui.js"></script>
 
-  </head>
+<head>
+  <title>Instrumentos - Agregar Guitarra</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <meta name="generator" content="GrapesJS Studio" />
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/css_guitarras/stylesagregarguitarras.css">
+  <link rel="stylesheet" type="text/css" href="../../jquery-ui-1.14.1.custom/jquery-ui.css">
+  <script src="../../jquery-3.7.1.min.js"></script>
+  <script src="../../jquery-ui-1.14.1.custom/jquery-ui.js"></script>
 
-  <body id="page-add-guitar">
-    <div id="header-row" class="gjs-grid-row">
-      <div id="header-col" class="gjs-grid-column">
-        <div id="header-inner-row" class="gjs-grid-row">
-          <div id="logo-col" class="gjs-grid-column">
-            <a href="../inicio.html" id="logo-link" class="gjs-link-box">
-              <div id="logo-text">PENTACORD</div>
-            </a>
-          </div>
-          <div id="nav-col" class="gjs-grid-column">
-            <div id="nav-row" class="gjs-grid-row">
-              <div id="nav-col-inner" class="gjs-grid-column">
-                <a href="../inicio.html" id="nav-link-home" class="gjs-link">Inicio</a>
-                <a href="../instrumentos.html" id="nav-link-instruments" class="gjs-link">Instrumentos</a>
-                <a href="../inventario.html" id="nav-link-inventory" class="gjs-link">Inventario</a>
-                <a href="../acerca-de.html" id="nav-link-about" class="gjs-link">Acerca de...</a>
-              </div>
+</head>
+
+<body id="page-add-guitar">
+  <div id="header-row" class="gjs-grid-row">
+    <div id="header-col" class="gjs-grid-column">
+      <div id="header-inner-row" class="gjs-grid-row">
+        <div id="logo-col" class="gjs-grid-column">
+          <a href="../inicio.html" id="logo-link" class="gjs-link-box">
+            <div id="logo-text">PENTACORD</div>
+          </a>
+        </div>
+        <div id="nav-col" class="gjs-grid-column">
+          <div id="nav-row" class="gjs-grid-row">
+            <div id="nav-col-inner" class="gjs-grid-column">
+              <a href="../inicio.html" id="nav-link-home" class="gjs-link">Inicio</a>
+              <a href="../instrumentos.html" id="nav-link-instruments" class="gjs-link">Instrumentos</a>
+              <a href="../inventario.html" id="nav-link-inventory" class="gjs-link">Inventario</a>
+              <a href="../acerca-de.html" id="nav-link-about" class="gjs-link">Acerca de...</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="hero-row" class="gjs-grid-row">
-      <div id="hero-col" class="gjs-grid-column">
-        <h1 id="hero-title" class="gjs-heading">Agregar Guitarra</h1>
-      </div>
+  <div id="hero-row" class="gjs-grid-row">
+    <div id="hero-col" class="gjs-grid-column">
+      <h1 id="hero-title" class="gjs-heading">Agregar Guitarra</h1>
     </div>
+  </div>
 
-    <!-- radios ocultos -->
-    <input type="radio" name="funda" id="funda-si" value="si" hidden>
-    <input type="radio" name="funda" id="funda-no" value="no" checked hidden>
+  <!-- radios ocultos -->
+  <input type="radio" name="funda" id="funda-si" value="si" hidden>
+  <input type="radio" name="funda" id="funda-no" value="no" checked hidden>
 
-    <section id="form-section-guitar" class="gjs-section">
-      <div id="form-container-guitar" class="gjs-container">
-        <table id="form-table-guitar">
-          <tbody id="form-tablebody-guitar">
-            <tr id="row-code-guitar">
-              <td id="label-cell-code-guitar">
-                <div id="label-wrap-code-guitar">
-                  <b id="label-code-guitar">Código</b>
+  <section id="form-section-guitar" class="gjs-section">
+    <div id="form-container-guitar" class="gjs-container">
+      <table id="form-table-guitar">
+        <tbody id="form-tablebody-guitar">
+          <tr id="row-code-guitar">
+            <td id="label-cell-code-guitar">
+              <div id="label-wrap-code-guitar">
+                <b id="label-code-guitar">Código</b>
+              </div>
+            </td>
+            <td id="input-cell-code-guitar">
+              <input type="text" id="input-code-guitar" />
+            </td>
+          </tr>
+
+          <tr id="row-name-guitar">
+            <td id="label-cell-name-guitar">
+              <div id="label-wrap-name-guitar">
+                <b id="label-name-guitar">Nombre</b>
+              </div>
+            </td>
+            <td id="input-cell-name-guitar">
+              <input type="text" id="input-name-guitar" />
+            </td>
+          </tr>
+
+          <tr id="row-brand-guitar">
+            <td id="label-cell-brand-guitar">
+              <div id="label-wrap-brand-guitar">
+                <b id="label-brand-guitar">Marca</b>
+              </div>
+            </td>
+            <td id="input-cell-brand-guitar">
+              <input type="text" id="input-brand-guitar" />
+            </td>
+          </tr>
+
+          <tr id="row-price-guitar">
+            <td id="label-cell-price-guitar">
+              <div id="label-wrap-price-guitar">
+                <b id="label-price-guitar">Precio</b>
+              </div>
+            </td>
+            <td id="input-cell-price-guitar">
+              <input type="text" id="input-price-guitar" />
+            </td>
+          </tr>
+
+          <tr id="row-stock-guitar">
+            <td id="label-cell-stock-guitar">
+              <div id="label-wrap-stock-guitar">
+                <b id="label-stock-guitar">Stock</b>
+              </div>
+            </td>
+            <td id="input-cell-stock-guitar">
+              <input type="text" id="input-stock-guitar" />
+            </td>
+          </tr>
+
+          <tr id="row-date-guitar">
+            <td id="label-date-stock-guitar">
+              <div id="label-wrap-date-guitar">
+                <b id="label-date-guitar">Fecha de creacion</b>
+              </div>
+            </td>
+            <td id="input-cell-date-guitar">
+              <input type="text" id="input-date-guitar" readonly />
+            </td>
+          </tr>
+
+          <tr id="row-type-guitar">
+            <td id="label-cell-type-guitar">
+              <div id="label-wrap-type-guitar">
+                <b id="label-type-guitar">Tipo</b>
+              </div>
+            </td>
+            <td id="input-cell-type-guitar">
+              <select id="select-type-guitar">
+                <option value="opt1" id="opt-select-default-guitar">Seleccione una opción</option>
+                <option value="Eléctrica" id="opt-electric-guitar">Electrica</option>
+                <option value="Acústica" id="opt-acoustic-guitar">Acústica</option>
+                <option value="Electroacústica" id="opt-electroacoustic-guitar">Electroacústica</option>
+                <option value="Clásica" id="opt-classical-guitar">Clasica</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr id="row-material-guitar">
+            <td id="label-cell-material-guitar">
+              <div id="label-wrap-material-guitar">
+                <b id="label-material-guitar">Material del cuerpo</b>
+              </div>
+            </td>
+            <td id="input-cell-material-guitar">
+              <input type="text" id="input-material-guitar" />
+            </td>
+          </tr>
+
+          <tr id="row-case-guitar">
+            <td id="label-cell-case-guitar">
+              <div id="label-wrap-case-guitar">
+                <b id="label-case-guitar">Funda</b>
+              </div>
+            </td>
+            <td id="input-cell-case-guitar">
+              <div data-type-role="flex-row" id="case-choice-row" class="gjs-plg-flex-row">
+                <div data-type-role="flex-column" id="case-choice-col-yes" class="gjs-plg-flex-column">
+                  <label for="funda-si" id="label-funda-si"><b>Si</b></label>
                 </div>
-              </td>
-              <td id="input-cell-code-guitar">
-                <input type="text" id="input-code-guitar" />
-              </td>
-            </tr>
-
-            <tr id="row-name-guitar">
-              <td id="label-cell-name-guitar">
-                <div id="label-wrap-name-guitar">
-                  <b id="label-name-guitar">Nombre</b>
+                <div data-type-role="flex-column" id="case-choice-col-no" class="gjs-plg-flex-column">
+                  <label for="funda-no" id="label-funda-no"><b>No</b></label>
                 </div>
-              </td>
-              <td id="input-cell-name-guitar">
-                <input type="text" id="input-name-guitar" />
-              </td>
-            </tr>
+              </div>
+            </td>
+          </tr>
 
-            <tr id="row-brand-guitar">
-              <td id="label-cell-brand-guitar">
-                <div id="label-wrap-brand-guitar">
-                  <b id="label-brand-guitar">Marca</b>
-                </div>
-              </td>
-              <td id="input-cell-brand-guitar">
-                <input type="text" id="input-brand-guitar" />
-              </td>
-            </tr>
+          <!-- CAMPOS DE LA FUNDA EMBEBIDOS AQUÍ -->
+          <tr id="row-code-case">
+            <td id="label-cell-code-case">
+              <div id="label-wrap-code-case"><b>Código funda</b></div>
+            </td>
+            <td id="input-cell-code-case">
+              <input type="text" id="input-code-case" />
+            </td>
+          </tr>
 
-            <tr id="row-price-guitar">
-              <td id="label-cell-price-guitar">
-                <div id="label-wrap-price-guitar">
-                  <b id="label-price-guitar">Precio</b>
-                </div>
-              </td>
-              <td id="input-cell-price-guitar">
-                <input type="text" id="input-price-guitar" />
-              </td>
-            </tr>
+          <tr id="row-name-case">
+            <td id="label-cell-name-case">
+              <div id="label-wrap-name-case"><b>Nombre funda</b></div>
+            </td>
+            <td id="input-cell-name-case">
+              <input type="text" id="input-name-case" />
+            </td>
+          </tr>
 
-            <tr id="row-stock-guitar">
-              <td id="label-cell-stock-guitar">
-                <div id="label-wrap-stock-guitar">
-                  <b id="label-stock-guitar">Stock</b>
-                </div>
-              </td>
-              <td id="input-cell-stock-guitar">
-                <input type="text" id="input-stock-guitar" />
-              </td>
-            </tr>
+          <tr id="row-price-case">
+            <td id="label-cell-price-case">
+              <div id="label-wrap-price-case"><b>Precio funda</b></div>
+            </td>
+            <td id="input-cell-price-case">
+              <input type="text" id="input-price-case" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-            <tr id="row-date-guitar">
-              <td id="label-date-stock-guitar">
-                <div id="label-wrap-date-guitar">
-                  <b id="label-date-guitar">Fecha de creacion</b>
-                </div>
-              </td>
-              <td id="input-cell-date-guitar">
-                <input type="text" id="input-date-guitar" readonly />
-              </td>
-            </tr>
-
-            <tr id="row-type-guitar">
-              <td id="label-cell-type-guitar">
-                <div id="label-wrap-type-guitar">
-                  <b id="label-type-guitar">Tipo</b>
-                </div>
-              </td>
-              <td id="input-cell-type-guitar">
-                <select id="select-type-guitar">
-                  <option value="opt1" id="opt-select-default-guitar">Seleccione una opción</option>
-                  <option value="Eléctrica" id="opt-electric-guitar">Electrica</option>
-                  <option value="Acústica" id="opt-acoustic-guitar">Acústica</option>
-                  <option value="Electroacústica" id="opt-electroacoustic-guitar">Electroacústica</option>
-                  <option value="Clásica" id="opt-classical-guitar">Clasica</option>
-                </select>
-              </td>
-            </tr>
-
-            <tr id="row-material-guitar">
-              <td id="label-cell-material-guitar">
-                <div id="label-wrap-material-guitar">
-                  <b id="label-material-guitar">Material del cuerpo</b>
-                </div>
-              </td>
-              <td id="input-cell-material-guitar">
-                <input type="text" id="input-material-guitar" />
-              </td>
-            </tr>
-
-            <tr id="row-case-guitar">
-              <td id="label-cell-case-guitar">
-                <div id="label-wrap-case-guitar">
-                  <b id="label-case-guitar">Funda</b>
-                </div>
-              </td>
-              <td id="input-cell-case-guitar">
-                <div data-type-role="flex-row" id="case-choice-row" class="gjs-plg-flex-row">
-                  <div data-type-role="flex-column" id="case-choice-col-yes" class="gjs-plg-flex-column">
-                    <label for="funda-si" id="label-funda-si"><b>Si</b></label>
-                  </div>
-                  <div data-type-role="flex-column" id="case-choice-col-no" class="gjs-plg-flex-column">
-                    <label for="funda-no" id="label-funda-no"><b>No</b></label>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- CAMPOS DE LA FUNDA EMBEBIDOS AQUÍ -->
-            <tr id="row-code-case">
-              <td id="label-cell-code-case">
-                <div id="label-wrap-code-case"><b>Código funda</b></div>
-              </td>
-              <td id="input-cell-code-case">
-                <input type="text" id="input-code-case" />
-              </td>
-            </tr>
-
-            <tr id="row-name-case">
-              <td id="label-cell-name-case">
-                <div id="label-wrap-name-case"><b>Nombre funda</b></div>
-              </td>
-              <td id="input-cell-name-case">
-                <input type="text" id="input-name-case" />
-              </td>
-            </tr>
-
-            <tr id="row-price-case">
-              <td id="label-cell-price-case">
-                <div id="label-wrap-price-case"><b>Precio funda</b></div>
-              </td>
-              <td id="input-cell-price-case">
-                <input type="text" id="input-price-case" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- ACCIONES -->
-        <div data-type-role="flex-row" id="form-actions-guitar" class="gjs-plg-flex-row">
-          <div data-type-role="flex-column" id="form-actions-left-guitar" class="gjs-plg-flex-column"></div>
-          <div data-type-role="flex-column" id="form-actions-right-guitar" class="gjs-plg-flex-column">
-            <button type="button" id="btn-add-guitar">Agregar</button>
-          </div>
+      <!-- ACCIONES -->
+      <div data-type-role="flex-row" id="form-actions-guitar" class="gjs-plg-flex-row">
+        <div data-type-role="flex-column" id="form-actions-left-guitar" class="gjs-plg-flex-column"></div>
+        <div data-type-role="flex-column" id="form-actions-right-guitar" class="gjs-plg-flex-column">
+          <button type="button" id="btn-add-guitar">Agregar</button>
         </div>
       </div>
-    </section>
-
-    <div id="footer-row" class="gjs-grid-row">
-      <div id="footer-col" class="gjs-grid-column">
-        <div id="footer-copyright" class="gjs-text-blue">Copyright © 2025 Pentacord Company</div>
-      </div>
     </div>
-  </body>
-</html>
+  </section>
+
+  <div id="footer-row" class="gjs-grid-row">
+    <div id="footer-col" class="gjs-grid-column">
+      <div id="footer-copyright" class="gjs-text-blue">Copyright © 2025 Pentacord Company</div>
+    </div>
+  </div>
+</body>
 
 <script src="../../js/config.js"></script>
 <script src="../../js/agregarguitarra.js"></script>
-
 <script type="text/javascript">
-  $( function() {
-    $( "#input-date-guitar").datepicker({
+  $(function () {
+    $("#input-date-guitar").datepicker({
       changeMonth: true,
       changeYear: true
     });
   });
-  </script>
+</script>
+
+</html>
