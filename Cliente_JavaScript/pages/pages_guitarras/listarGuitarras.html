@@ -46,7 +46,57 @@
   <section id="inventory-section-guitars" class="gjs-section">
     <div id="inventory-container-guitars" class="gjs-container">
 
+      <div class="filtros-container">
+        <button id="btn-filtros">Filtros</button>
+      </div>
 
+      <!-- Modal -->
+      <div id="modal-filtros" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Filtros</h2>
+          <form id="form-filtros">
+
+            <div class="filtro-item">
+              <input type="checkbox" id="chk-nombre">
+              <label for="chk-nombre">Nombre</label>
+              <input type="text" placeholder="Ingrese nombre">
+            </div>
+
+            <div class="filtro-item">
+              <input type="checkbox" id="chk-marca">
+              <label for="chk-marca">Marca</label>
+              <input type="text" placeholder="Ingrese marca">
+            </div>
+
+            <div class="filtro-item">
+              <input type="checkbox" id="chk-preciomin">
+              <label for="chk-preciomin">Precio min</label>
+              <input type="number" placeholder="Ingrese precio mínimo">
+            </div>
+
+            <div class="filtro-item">
+              <input type="checkbox" id="chk-preciomax">
+              <label for="chk-preciomax">Precio max</label>
+              <input type="number" placeholder="Ingrese precio máximo">
+            </div>
+
+            <div class="filtro-item">
+              <input type="checkbox" id="chk-stockmin">
+              <label for="chk-stockmin">Stock min</label>
+              <input type="number" placeholder="Ingrese stock mínimo">
+            </div>
+
+            <div class="filtro-item">
+              <input type="checkbox" id="chk-stockmax">
+              <label for="chk-stockmax">Stock max</label>
+              <input type="number" placeholder="Ingrese stock máximo">
+            </div>
+
+            <button type="submit">Aplicar filtros</button>
+          </form>
+        </div>
+      </div>
 
 
       <div class="tabla-contenedor" id="tabla-container-guitars">
@@ -62,7 +112,8 @@
                 <th id="th-date">Fecha de creación</th>
                 <th id="th-type">Tipo</th>
                 <th id="th-material">Material</th>
-                <th id="th-cases">Fundas</th>
+                <th id="th-cases-code">Código fundas</th>
+                <th id="th-cases-name">Nombre fundas</th>
               </tr>
             </thead>
             <tbody id="tbody-guitars"><!-- Filas dinámicas desde REST --></tbody>

@@ -88,7 +88,7 @@
 
 /* tbody placeholder */
 #tbody-guitars {
-  /* filas inyectadas por JS */
+  text-align: center;
 }
 
 /* Footer spacing (page-specific override) */

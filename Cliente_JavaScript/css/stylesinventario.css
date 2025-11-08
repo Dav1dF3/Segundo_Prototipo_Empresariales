@@ -76,6 +76,7 @@
 
 /* Placeholder body (rows injected by JS) */
 #tabla-body {
+  text-align: center;
   /* estilo base; las filas dinámicas pueden llevar clases propias */
 }
 
