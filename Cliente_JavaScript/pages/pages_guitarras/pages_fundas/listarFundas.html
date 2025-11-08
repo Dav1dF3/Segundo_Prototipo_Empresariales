@@ -2,19 +2,19 @@
 <html>
 
 <head>
-  <title>Inventario</title>
+  <title>Guitarras - Listar Fundas</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="robots" content="index,follow" />
   <meta name="generator" content="GrapesJS Studio" />
-  <link rel="stylesheet" href="../../css/main.css">
-  <link rel="stylesheet" href="../../css/css_guitarras/styleslistarguitarras.css">
+  <link rel="stylesheet" href="../../../css/main.css">
+  <link rel="stylesheet" href="../../../css/css_guitarras/css_fundas/styleslistarfundas.css">
   <link rel="stylesheet" type="text/css" href="../../jquery-ui-1.14.1.custom/jquery-ui.css">
   <script src="../../jquery-3.7.1.min.js"></script>
   <script src="../../jquery-ui-1.14.1.custom/jquery-ui.js"></script>
 </head>
 
-<body id="page-inventory-guitars">
+<body id="page-list-case">
   <div id="header-row" class="gjs-grid-row">
     <div id="header-col" class="gjs-grid-column">
       <div id="header-inner-row" class="gjs-grid-row">
@@ -26,10 +26,10 @@
         <div id="nav-col" class="gjs-grid-column">
           <div id="nav-row" class="gjs-grid-row">
             <div id="nav-col-inner" class="gjs-grid-column">
-              <a href="../inicio.html" id="nav-link-home" class="gjs-link">Inicio</a>
-              <a href="../instrumentos.html" id="nav-link-instruments" class="gjs-link">Instrumentos</a>
-              <a href="../inventario.html" id="nav-link-inventory" class="gjs-link">Inventario</a>
-              <a href="../acerca-de.html" id="nav-link-about" class="gjs-link">Acerca de…</a>
+              <a href="../../inicio.html" id="nav-link-home" class="gjs-link">Inicio</a>
+              <a href="../../instrumentos.html" id="nav-link-instruments" class="gjs-link">Instrumentos</a>
+              <a href="../../inventario.html" id="nav-link-inventory" class="gjs-link">Inventario</a>
+              <a href="../../acerca-de.html" id="nav-link-about" class="gjs-link">Acerca de…</a>
             </div>
           </div>
         </div>
@@ -39,33 +39,28 @@
 
   <div id="hero-row" class="gjs-grid-row">
     <div id="hero-col" class="gjs-grid-column">
-      <h1 id="hero-title" class="gjs-heading">Inventario Guitarras</h1>
+      <h1 id="hero-title" class="gjs-heading">Listado Fundas</h1>
     </div>
   </div>
 
-  <section id="inventory-section-guitars" class="gjs-section">
-    <div id="inventory-container-guitars" class="gjs-container">
+  <section id="inventory-section-case" class="gjs-section">
+    <div id="inventory-container-case" class="gjs-container">
 
 
 
 
-      <div class="tabla-contenedor" id="tabla-container-guitars">
-        <div class="tabla-scroll" id="tabla-scroll-guitars">
-          <table id="table-guitars">
-            <thead id="thead-guitars">
-              <tr id="tr-guitars-header">
-                <th id="th-code">Código</th>
+      <div class="tabla-contenedor" id="tabla-container-case">
+        <div class="tabla-scroll" id="tabla-scroll-case">
+          <table id="table-case">
+            <thead id="thead-case">
+              <tr id="tr-case-header">
+                <th id="th-code-case">Código funda</th>
+                <th id="th-cdoe-guitar">Código guitarra</th>
                 <th id="th-name">Nombre</th>
-                <th id="th-brand">Marca</th>
                 <th id="th-price">Precio</th>
-                <th id="th-stock">Stock</th>
-                <th id="th-date">Fecha de creación</th>
-                <th id="th-type">Tipo</th>
-                <th id="th-material">Material</th>
-                <th id="th-cases">Fundas</th>
               </tr>
             </thead>
-            <tbody id="tbody-guitars"><!-- Filas dinámicas desde REST --></tbody>
+            <tbody id="tbody-case"><!-- Filas dinámicas desde REST --></tbody>
           </table>
         </div>
       </div>
@@ -83,6 +78,6 @@
 
 <script src="../../js/modal.js"></script>
 <script src="../../js/config.js"></script>
-<script src="../../js/listarguitarras.js"></script>
+<script src="../../js/listarfundas.js"></script>
 
 </html>
