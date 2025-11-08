@@ -28,10 +28,9 @@ function renderizarTablaGuitarras(guitarras) {
 
   guitarras.forEach(guitarra => {
     const fila = document.createElement("tr");
-
-    // Fundas: si existen, concatenarlas
+    
     const fundasNombre = guitarra.fundas && guitarra.fundas.length > 0
-      ? guitarra.fundas.map(f => f.nombre || f.codigo).join(", ")
+      ? guitarra.fundas.map(f => f.nombre || "-").join(", ")
       : "-";
 
     const fundasCodigo = guitarra.fundas && guitarra.fundas.length > 0
