@@ -181,6 +181,11 @@ public class InstrumentoController
                 .body(new ApiResponse(false, "Fundas agregadas correctamente"));
     }
 
+    /**
+     * Devuelve la lista de fundas.
+     *
+     * @return lista de {@link Funda}
+     */
     @GetMapping(value = "/guitarras/fundas")
     public ResponseEntity<List<Funda>> listarFundas()
     {
@@ -188,6 +193,13 @@ public class InstrumentoController
         return ResponseEntity.ok(listaFundas);
     }
 
+    /**
+     * Busca una funda por su código único y por el codigo de la guitarra a la que está asociada.
+     *
+     * @param codigo codigo de la guitarra.
+     * @param codigoFunda código de la funda a buscar.
+     * @return funda encontrada con código 200 o mensaje error 404 si no existe.
+     */
     @GetMapping(value = "/guitarras/{codigo}/fundas/{codigoFunda}")
     public ResponseEntity<?> buscarFunda(@PathVariable("codigo") long codigo,
                                          @PathVariable("codigoFunda") long codigoFunda)

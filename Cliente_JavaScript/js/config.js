@@ -75,6 +75,15 @@ async function eliminarInstrumento(codigo) {
   return response.ok;
 }
 
+// GET /instrumentos/guitarras/fundas - Listar fundas de guitarras
+async function listarFundas() {
+  const response = await fetch(`${BASE_URL}/guitarras/fundas`, {
+    method: 'GET',
+    headers: headers
+  });
+  return response.json();
+}
+
 // POST /instrumentos/guitarras/{codigo}/fundas - Agregar fundas a guitarra
 async function agregarFundas(codigo, fundas) {
   const response = await fetch(`${BASE_URL}/guitarras/${codigo}/fundas`, {
@@ -82,6 +91,18 @@ async function agregarFundas(codigo, fundas) {
     headers: headers,
     body: JSON.stringify(fundas)
   });
+  return response.json();
+}
+
+// GET /instrumentos/guitarras/{codigo}/fundas/{codigoFunda} - Buscar fundas por código
+async function buscarFundas(codigo, codigoFunda) {
+  const response = await fetch(`${BASE_URL}/guitarras/{codigo}/fundas/{codigoFunda}`, {
+    method: 'GET',
+    headers: headers
+  });
+  if(response.status === 404) {
+    return null; // Funda no encontrada
+  }
   return response.json();
 }
 
