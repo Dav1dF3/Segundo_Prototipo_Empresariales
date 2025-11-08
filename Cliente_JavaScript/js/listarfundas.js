@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     tbody.innerHTML = "";
   
     if (!fundas || fundas.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="9">No hay fundas disponibles</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="4">No hay fundas disponibles</td></tr>`;
       return;
     }
   
