@@ -17,6 +17,7 @@ import com.unibague.poctiendainstrumentos.repository.GuitarraRepository;
 import com.unibague.poctiendainstrumentos.repository.InstrumentoRepository;
 import com.unibague.poctiendainstrumentos.repository.TecladoRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,19 +62,16 @@ import java.util.*;
  * @since 2025
  */
 @Service
+@RequiredArgsConstructor
 public class ServicioInstrumento implements IServicioInstrumento {
 
-    @Autowired
-    private InstrumentoRepository instrumentoRepository;
+    private final InstrumentoRepository instrumentoRepository;
 
-    @Autowired
-    private TecladoRepository tecladoRepository;
+    private final TecladoRepository tecladoRepository;
 
-    @Autowired
-    private GuitarraRepository guitarraRepository;
+    private final GuitarraRepository guitarraRepository;
 
-    @Autowired
-    private FundaRepository fundaRepository;
+    private final FundaRepository fundaRepository;
 
 
     /**
@@ -222,9 +220,8 @@ public class ServicioInstrumento implements IServicioInstrumento {
 
     @Override
     @Transactional
-    public Optional<Funda> buscarFunda(long codigoGuitarra,long codigoFunda)
+    public Optional<Funda> buscarFunda(FundaId id)
     {
-        FundaId id = new FundaId(codigoGuitarra,codigoFunda);
         return fundaRepository.findById(id);
     }
 

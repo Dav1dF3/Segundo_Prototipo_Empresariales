@@ -5,10 +5,8 @@
 package com.unibague.poctiendainstrumentos.service;
 
 import com.unibague.poctiendainstrumentos.dto.FiltroInstrumentoDTO;
-import com.unibague.poctiendainstrumentos.model.Funda;
-import com.unibague.poctiendainstrumentos.model.Guitarra;
-import com.unibague.poctiendainstrumentos.model.Instrumento;
-import com.unibague.poctiendainstrumentos.model.Teclado;
+import com.unibague.poctiendainstrumentos.model.*;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -99,7 +97,7 @@ public interface IServicioInstrumento {
 
     List<Funda> listarFundas();
 
-    Optional<Funda> buscarFunda(long codigoGuitarra,long codigoFunda);
+    Optional<Funda> buscarFunda(FundaId id);
 
     /**
      * Edita una funda identificada dentro de una guitarra dada.

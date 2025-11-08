@@ -2,11 +2,9 @@ package com.unibague.poctiendainstrumentos.controller;
 
 import com.unibague.poctiendainstrumentos.dto.ApiResponse;
 import com.unibague.poctiendainstrumentos.dto.FiltroInstrumentoDTO;
-import com.unibague.poctiendainstrumentos.model.Funda;
-import com.unibague.poctiendainstrumentos.model.Guitarra;
-import com.unibague.poctiendainstrumentos.model.Instrumento;
-import com.unibague.poctiendainstrumentos.model.Teclado;
+import com.unibague.poctiendainstrumentos.model.*;
 import com.unibague.poctiendainstrumentos.service.IServicioInstrumento;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,11 +31,11 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/instrumentos")
+@RequiredArgsConstructor
 public class InstrumentoController
 {
 
-    @Autowired
-    private IServicioInstrumento servicioInstrumento;
+    private final IServicioInstrumento servicioInstrumento;
 
     /**
      * Valida que el código de instrumento o funda no sea nulo ni vacío.
@@ -181,6 +179,29 @@ public class InstrumentoController
         servicioInstrumento.agregarFundas(codigo, fundas);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new ApiResponse(false, "Fundas agregadas correctamente"));
+    }
+
+    @GetMapping(value = "/guitarras/fundas")
+    public ResponseEntity<List<Funda>> listarFundas()
+    {
+        List<Funda> listaFundas = servicioInstrumento.listarFundas();
+        return ResponseEntity.ok(listaFundas);
+    }
+
+    @GetMapping(value = "/guitarras/{codigo}/fundas/{codigoFunda}")
+    public ResponseEntity<?> buscarFunda(@PathVariable("codigo") long codigo,
+                                         @PathVariable("codigoFunda") long codigoFunda)
+    {
+        validarCodigo(codigo, "código de la guitarra");
+        validarCodigo(codigoFunda, "código de la funda");
+        FundaId id  = new FundaId(codigoFunda, codigo);
+        Optional<Funda> funda = servicioInstrumento.buscarFunda(id);
+        if(funda.isEmpty())
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse(false, "Funda no existe"));
+        }
+        return ResponseEntity.ok(funda.get());
     }
 
     /**
