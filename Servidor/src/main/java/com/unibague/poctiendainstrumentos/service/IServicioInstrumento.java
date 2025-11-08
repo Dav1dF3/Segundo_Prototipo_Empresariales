@@ -99,7 +99,7 @@ public interface IServicioInstrumento {
 
     List<Funda> listarFundas();
 
-    Optional<Funda> buscarFunda(long codigoFunda);
+    Optional<Funda> buscarFunda(long codigoGuitarra,long codigoFunda);
 
     /**
      * Edita una funda identificada dentro de una guitarra dada.

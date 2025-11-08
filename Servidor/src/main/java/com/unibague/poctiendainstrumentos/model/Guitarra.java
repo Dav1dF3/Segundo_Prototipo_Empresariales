@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Stream;
 
 /**
  * Representa una guitarra específica, que es un tipo de instrumento musical.
@@ -101,12 +100,16 @@ public class Guitarra extends Instrumento
         if (fundas == null) {
             throw new IllegalArgumentException("Las fundas no pueden ser nulas");
         }
-            this.fundas = new ArrayList<>(
-                    Stream.concat(this.fundas.stream(), fundas.stream())
-                            .distinct()
-                            .toList()
-            );
-            fundas.forEach(f -> f.setGuitarra(this));
+            fundas.forEach(f -> {
+                f.setCodigo_guitarra(getCodigo());
+                f.setGuitarra(this);
+                boolean existe = this.getFundas().stream()
+                        .anyMatch(existing -> existing.getCodigo() == f.getCodigo());
+                if (existe) throw new IllegalStateException("La funda ya existe");
+            });
+
+            this.fundas.addAll(fundas);
+
     }
 
     /**

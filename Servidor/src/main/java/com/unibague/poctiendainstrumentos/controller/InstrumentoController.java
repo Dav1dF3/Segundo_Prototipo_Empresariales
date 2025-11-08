@@ -46,8 +46,8 @@ public class InstrumentoController
      * @param campo nombre del campo para mensaje de error
      * @throws IllegalArgumentException si el código es nulo o vacío
      */
-    private void validarCodigo(String codigo, String campo) {
-        if (codigo == null || codigo.isBlank()) {
+    private void validarCodigo(Long codigo, String campo) {
+        if (codigo == null || codigo == 0) {
             throw new IllegalArgumentException("El " + campo + " debe existir y no estar vacío");
         }
     }
@@ -122,7 +122,7 @@ public class InstrumentoController
      * @return instrumento encontrado con código 200 o mensaje error 404 si no existe.
      */
     @GetMapping(value = "/{codigo}")
-    public ResponseEntity<?> buscarInstrumento(@PathVariable("codigo") String codigo)
+    public ResponseEntity<?> buscarInstrumento(@PathVariable("codigo") long codigo)
     {
         validarCodigo(codigo, "código del instrumento");
         Optional<Instrumento> instrumento = servicioInstrumento.buscarInstrumento(codigo);
@@ -142,7 +142,7 @@ public class InstrumentoController
      * @return respuesta con mensaje de éxito y código 200
      */
     @PutMapping(value = "/{codigo}")
-    public ResponseEntity<ApiResponse> editarInstrumento(@PathVariable("codigo") String codigo,
+    public ResponseEntity<ApiResponse> editarInstrumento(@PathVariable("codigo") long codigo,
                                                          @RequestBody Instrumento instrumentoModificado)
     {
         validarCodigo(codigo, "código del instrumento");
@@ -158,7 +158,7 @@ public class InstrumentoController
      * @return respuesta con mensaje de éxito y código 200
      */
     @DeleteMapping(value = "/{codigo}")
-    public ResponseEntity<ApiResponse> eliminarInstrumento(@PathVariable("codigo") String codigo)
+    public ResponseEntity<ApiResponse> eliminarInstrumento(@PathVariable("codigo") long codigo)
     {
         validarCodigo(codigo, "código del instrumento");
         servicioInstrumento.eliminarInstrumento(codigo);
@@ -174,7 +174,7 @@ public class InstrumentoController
      * @return respuesta con mensaje de éxito y código 201
      */
     @PostMapping(value = "/guitarras/{codigo}/fundas")
-    public ResponseEntity<ApiResponse> agregarFundas(@PathVariable("codigo") String codigo,
+    public ResponseEntity<ApiResponse> agregarFundas(@PathVariable("codigo") long codigo,
                                                      @RequestBody List<Funda> fundas)
     {
         validarCodigo(codigo, "código de la guitarra");
@@ -192,8 +192,8 @@ public class InstrumentoController
      * @return respuesta con mensaje de éxito y código 200
      */
     @PutMapping(value = "/guitarras/{codigo}/fundas/{codigoFunda}")
-    public ResponseEntity<ApiResponse> editarFunda(@PathVariable("codigo") String codigo,
-                                                    @PathVariable("codigoFunda") String codigoFunda,
+    public ResponseEntity<ApiResponse> editarFunda(@PathVariable("codigo") long codigo,
+                                                    @PathVariable("codigoFunda") long codigoFunda,
                                                     @RequestBody Funda fundaModificada) {
         validarCodigo(codigo, "código de la guitarra");
         validarCodigo(codigoFunda, "código de la funda");
@@ -210,8 +210,8 @@ public class InstrumentoController
      * @return respuesta con mensaje de éxito y código 200
      */
     @DeleteMapping(value = "/guitarras/{codigo}/fundas/{codigoFunda}")
-    public ResponseEntity<ApiResponse> eliminarFunda(@PathVariable("codigo") String codigo,
-                                                     @PathVariable("codigoFunda") String codigoFunda)
+    public ResponseEntity<ApiResponse> eliminarFunda(@PathVariable("codigo") long codigo,
+                                                     @PathVariable("codigoFunda") long codigoFunda)
     {
         validarCodigo(codigo, "código de la guitarra");
         validarCodigo(codigoFunda, "código de la funda");

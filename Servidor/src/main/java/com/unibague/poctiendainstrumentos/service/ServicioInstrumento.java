@@ -11,21 +11,16 @@
 package com.unibague.poctiendainstrumentos.service;
 
 import com.unibague.poctiendainstrumentos.dto.FiltroInstrumentoDTO;
-import com.unibague.poctiendainstrumentos.model.Funda;
-import com.unibague.poctiendainstrumentos.model.Guitarra;
-import com.unibague.poctiendainstrumentos.model.Instrumento;
-import com.unibague.poctiendainstrumentos.model.Teclado;
+import com.unibague.poctiendainstrumentos.model.*;
 import com.unibague.poctiendainstrumentos.repository.FundaRepository;
 import com.unibague.poctiendainstrumentos.repository.GuitarraRepository;
 import com.unibague.poctiendainstrumentos.repository.InstrumentoRepository;
 import com.unibague.poctiendainstrumentos.repository.TecladoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 /**
  * Servicio central para la gestión de instrumentos musicales en la tienda.
@@ -95,8 +90,11 @@ public class ServicioInstrumento implements IServicioInstrumento {
         if (instrumento == null) {
             throw new IllegalArgumentException("El instrumento no puede ser nulo");
         }
-        if (instrumentoRepository.existsById(instrumento.getCodigo())) {
-            throw new DataIntegrityViolationException("El instrumento ya existe");
+        if (instrumento instanceof Guitarra guitarra) {
+            guitarra.getFundas().forEach(funda -> {
+                funda.setCodigo_guitarra(guitarra.getCodigo());
+                funda.setGuitarra(guitarra);
+            });
         }
         instrumentoRepository.save(instrumento);
     }
@@ -157,8 +155,19 @@ public class ServicioInstrumento implements IServicioInstrumento {
     @Override
     @Transactional
     public void editarInstrumento(long codigo, Instrumento instrumento) {
+        if (instrumento == null) {
+            throw new IllegalArgumentException("El instrumento no puede ser nulo");
+        }
+
         if (!instrumentoRepository.existsById(codigo)) {
             throw new NoSuchElementException("No se encontró un instrumento con el código: " + codigo);
+        }
+
+        if (instrumento instanceof Guitarra guitarra) {
+            guitarra.getFundas().forEach(funda -> {
+                funda.setCodigo_guitarra(guitarra.getCodigo());
+                funda.setGuitarra(guitarra);
+            });
         }
         instrumento.setCodigo(codigo);
         instrumentoRepository.save(instrumento);
@@ -213,9 +222,10 @@ public class ServicioInstrumento implements IServicioInstrumento {
 
     @Override
     @Transactional
-    public Optional<Funda> buscarFunda(long codigoFunda)
+    public Optional<Funda> buscarFunda(long codigoGuitarra,long codigoFunda)
     {
-        return fundaRepository.findById(codigoFunda);
+        FundaId id = new FundaId(codigoGuitarra,codigoFunda);
+        return fundaRepository.findById(id);
     }
 
     /**
@@ -237,6 +247,9 @@ public class ServicioInstrumento implements IServicioInstrumento {
         if (guitarra.isEmpty()) {
             throw new NoSuchElementException("No se encontró una guitarra con el código: " + codigoGuitarra);
         }
+        funda.setCodigo(codigoFunda);
+        funda.setGuitarra(guitarra.get());
+        funda.setCodigo_guitarra(codigoGuitarra);
         guitarra.get().editarFunda(codigoFunda, funda);
 
         guitarraRepository.save(guitarra.get());

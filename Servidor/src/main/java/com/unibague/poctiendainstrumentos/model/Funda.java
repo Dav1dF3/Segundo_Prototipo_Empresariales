@@ -29,6 +29,7 @@ import java.util.Objects;
 @Data
 @NoArgsConstructor
 @Entity
+@IdClass(FundaId.class)
 public class Funda
 {
     /**
@@ -50,14 +51,19 @@ public class Funda
     @Column(nullable = false)
     private double precio;
 
+    @Id
+    @Column(name = "codigo_guitarra")
+    private long codigo_guitarra;
+
     /**
      * Referencia a la guitarra propietaria de la funda.
      * Se ignora durante la serialización JSON para evitar referencias circulares.
      */
-    @ManyToOne
-    @JoinColumn(name = "guitarra_codigo")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_guitarra", referencedColumnName = "codigo", insertable = false, updatable = false)
     @JsonIgnore
     private Guitarra guitarra;
+
 
     /**
      * Constructor completo para crear una funda.
@@ -88,6 +94,7 @@ public class Funda
         }
     }
 
+
     /**
      * Devuelve una representación en cadena de la funda
      * incluyendo el código de la guitarra asociada (o "N/A" si no tiene).
@@ -115,7 +122,7 @@ public class Funda
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Funda funda = (Funda) o;
-        return Objects.equals(this.codigo, funda.codigo);
+        return  codigo == funda.codigo && codigo_guitarra == funda.codigo_guitarra;
     }
 
     /**
