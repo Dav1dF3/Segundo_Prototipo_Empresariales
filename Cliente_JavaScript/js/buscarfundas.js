@@ -1,52 +1,36 @@
-document.getElementById("btn-search-guitar").addEventListener("click", async () => {
-    const codigo = document.getElementById("input-code-search").value.trim();
+// === BUSCARFUNDAS.JS ===
 
-    if (!codigo) {
-      alert("Por favor ingresa un código para buscar");
+document.getElementById("btn-search").addEventListener("click", async () => {
+  const codigoGuitarra = document.getElementById("input-guitar-code").value.trim();
+  const codigoFunda = document.getElementById("input-funda-code").value.trim();
+
+  if (!codigoGuitarra || !codigoFunda) {
+    alert("Por favor ingresa un código de guitarra y un código de funda para buscar");
+    limpiarCampos();
+    return;
+  }
+
+  try {
+    const funda = await buscarFundas(codigoGuitarra, codigoFunda);
+
+    if (!funda) {
+      alert("No se encontró ninguna funda con ese código ❌");
+      limpiarCampos();
       return;
     }
 
-    try {
-      const instrumento = await buscarInstrumento(codigo);
+    document.getElementById("input-name").value = funda.nombre || "";
+    document.getElementById("input-price").value = funda.precio || "";
 
-      if (!instrumento) {
-        alert("No se encontró ningún instrumento con ese código ❌");
-        limpiarCampos();
-        return;
-      }
-
-      // ✅ llenar los campos solo si el instrumento es de tipo guitarra
-      if (instrumento.type !== "guitarra") {
-        alert("El código corresponde a otro tipo de instrumento, no a una guitarra ⚠️");
-        limpiarCampos();
-        return;
-      }
-
-      document.getElementById("input-name-search").value = instrumento.nombre || "";
-      document.getElementById("input-brand-search").value = instrumento.marca || "";
-      document.getElementById("input-price-search").value = instrumento.precioBase || "";
-      document.getElementById("input-stock-search").value = instrumento.stock || "";
-      document.getElementById("input-date-search").value = instrumento.fechaIngreso || "";
-      document.getElementById("input-type-search").value = instrumento.tipo || "";
-      document.getElementById("input-material-search").value = instrumento.materialCuerpo || "";
-      document.getElementById("input-case-search").value =
-        instrumento.fundas && instrumento.fundas.length > 0
-          ? instrumento.fundas.map(f => f.nombre || f).join(", ")
-          : "";
-
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Hubo un error al buscar la guitarra ❌");
-    }
-  });
-
-  function limpiarCampos() {
-    document.getElementById("input-name-search").value = "";
-    document.getElementById("input-brand-search").value = "";
-    document.getElementById("input-price-search").value = "";
-    document.getElementById("input-stock-search").value = "";
-    document.getElementById("input-date-search").value = "";
-    document.getElementById("input-type-search").value = "";
-    document.getElementById("input-material-search").value = "";
-    document.getElementById("input-case-search").value = "";
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Hubo un error al buscar la funda ❌");
   }
+});
+
+function limpiarCampos() {
+  document.getElementById("input-guitar-code").value = "";
+  document.getElementById("input-funda-code").value = "";
+  document.getElementById("input-name").value = "";
+  document.getElementById("input-price").value = "";
+}

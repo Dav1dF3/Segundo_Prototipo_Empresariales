@@ -96,7 +96,7 @@ async function agregarFundas(codigo, fundas) {
 
 // GET /instrumentos/guitarras/{codigo}/fundas/{codigoFunda} - Buscar fundas por código
 async function buscarFundas(codigo, codigoFunda) {
-  const response = await fetch(`${BASE_URL}/guitarras/{codigo}/fundas/{codigoFunda}`, {
+  const response = await fetch(`${BASE_URL}/guitarras/${codigo}/fundas/${codigoFunda}`, {
     method: 'GET',
     headers: headers
   });
