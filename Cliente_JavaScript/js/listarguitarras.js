@@ -41,7 +41,7 @@ function renderizarTablaGuitarras(guitarras) {
     fila.innerHTML = `
         <td>${guitarra.codigo}</td>
         <td>${guitarra.nombre}</td>
-        <td>${guitarra.marca}</td>
+        <td>${guitarra.marca || "-"}</td>
         <td>${guitarra.precioBase || guitarra.precio || "-"}</td>
         <td>${guitarra.stock}</td>
         <td>${guitarra.fechaIngreso || "-"}</td>

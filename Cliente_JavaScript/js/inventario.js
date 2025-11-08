@@ -32,7 +32,7 @@ function renderizarTabla(instrumentos) {
     fila.innerHTML = `
         <td>${instr.codigo}</td>
         <td>${instr.nombre}</td>
-        <td>${instr.marca}</td>
+        <td>${instr.marca || "-"}</td>
         <td>${instr.precioBase || instr.precio || "-"}</td>
         <td>${instr.stock}</td>
         <td>${instr.fechaIngreso || "-"}</td>

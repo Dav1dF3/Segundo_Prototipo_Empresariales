@@ -4,24 +4,30 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btnAdd = document.getElementById("btn-add-case");
   btnAdd.addEventListener("click", agregarFunda);
-
 });
 
 // Agregar funda
 async function agregarFunda() {
 
-
   // Código de la guitarra a la que se le agrega la funda
-  // desde el input del formulario
-  // Ejemplo: si la guitarra tiene código "GTR001", la URL será .../guitarras/GTR001/fundas
   const codigoGuitarra = document.getElementById("input-guitar-code").value.trim();
 
   // Datos básicos de la funda
   const funda = {
     codigo: document.getElementById("input-funda-code").value.trim(),
-    nombre: document.getElementById("input-name-case").value.trim(),
+    nombre: document.getElementById("input-name-case").value.trim(), // opcional
     precio: parseFloat(document.getElementById("input-price-case").value) || 0
   };
+
+  // ✅ Validar que los campos obligatorios estén completos (excepto nombre)
+  if (
+    !codigoGuitarra ||
+    !funda.codigo ||
+    !funda.precio
+  ) {
+    alert("⚠️ Por favor completa todos los campos obligatorios.");
+    return;
+  }
 
   console.log("JSON funda listo para API:", funda);
 
@@ -30,12 +36,12 @@ async function agregarFunda() {
     const response = await fetch(`${BASE_URL}/guitarras/${codigoGuitarra}/fundas`, {
       method: "POST",
       headers: headers, // definidos en config.js
-      body: JSON.stringify([funda])
+      body: JSON.stringify([funda]) // se envía como lista
     });
 
     if (response.status === 409) {
       alert("❌ El código ya existe. No puedes registrar un duplicado.");
-      return; // detenemos aquí para no continuar con la lógica de éxito
+      return;
     }
 
     if (!response.ok) {
@@ -54,11 +60,9 @@ async function agregarFunda() {
   // Limpiar campos del formulario de funda
   // =====================
   function limpiarCampos() {
-    // Campos de la funda
     document.getElementById("input-guitar-code").value = "";
     document.getElementById("input-funda-code").value = "";
     document.getElementById("input-name-case").value = "";
     document.getElementById("input-price-case").value = "";
   }
-
 }

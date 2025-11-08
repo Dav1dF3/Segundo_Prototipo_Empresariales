@@ -73,7 +73,7 @@
   background: rgb(36, 99, 235);
   color: #fff;
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
 
 /* Table cells */
@@ -81,13 +81,14 @@
 #table-keyboards th {
   border: 1px solid #ddd;
   padding: 8px;
+  text-align: center;
   vertical-align: middle;
   word-break: break-word;
 }
 
 /* tbody placeholder */
 #tbody-keyboards {
-  /* filas inyectadas por JS */
+  text-align: center;
 }
 
 /* Footer spacing (page-specific override) */
