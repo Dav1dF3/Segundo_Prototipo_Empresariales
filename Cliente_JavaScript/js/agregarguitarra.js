@@ -43,7 +43,7 @@ async function agregarGuitarra() {
     type: "guitarra",
     codigo: document.getElementById("input-code-guitar").value.trim(),
     nombre: document.getElementById("input-name-guitar").value.trim(),
-    marca: document.getElementById("input-brand-guitar").value.trim(),
+    marca: document.getElementById("input-brand-guitar").value.trim(), // opcional
     precioBase: parseFloat(document.getElementById("input-price-guitar").value) || 0,
     stock: parseInt(document.getElementById("input-stock-guitar").value) || 0,
     fechaIngreso: fechaIngreso,
@@ -51,6 +51,20 @@ async function agregarGuitarra() {
     materialCuerpo: document.getElementById("input-material-guitar").value.trim(),
     fundas: []
   };
+
+  // ✅ Validar que los campos obligatorios estén completos (excepto marca)
+  if (
+    !guitarra.codigo ||
+    !guitarra.nombre ||
+    !guitarra.precioBase ||
+    !guitarra.stock ||
+    !guitarra.fechaIngreso ||
+    !guitarra.tipo ||
+    !guitarra.materialCuerpo
+  ) {
+    alert("⚠️ Por favor completa todos los campos obligatorios.");
+    return;
+  }
 
   // Si se eligió "sí funda", armar objeto funda
   if (document.getElementById("funda-si").checked) {
@@ -73,12 +87,12 @@ async function agregarGuitarra() {
     const response = await fetch(BASE_URL, {
       method: "POST",
       headers: headers, // definidos en config.js
-      body: JSON.stringify(guitarra) // o teclado según corresponda
+      body: JSON.stringify(guitarra)
     });
 
     if (response.status === 409) {
       alert("❌ El código ya existe. No puedes registrar un duplicado.");
-      return; // detenemos aquí para no continuar con la lógica de éxito
+      return;
     }
 
     if (!response.ok) {
@@ -116,5 +130,4 @@ async function agregarGuitarra() {
     document.getElementById("funda-no").checked = true;
     toggleCamposFunda(); // para ocultar campos si se marcó "no"
   }
-
 }

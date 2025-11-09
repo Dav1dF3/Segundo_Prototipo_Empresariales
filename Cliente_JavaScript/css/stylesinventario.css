@@ -62,7 +62,7 @@
   background: rgb(36, 99, 235);
   color: #fff;
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
 
 /* Table cells */
@@ -76,6 +76,7 @@
 
 /* Placeholder body (rows injected by JS) */
 #tabla-body {
+  text-align: center;
   /* estilo base; las filas dinámicas pueden llevar clases propias */
 }
 

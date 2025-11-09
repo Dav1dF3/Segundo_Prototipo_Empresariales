@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       fila.innerHTML = `
         <td>${funda.codigo}</td>
         <td>${funda.codigo_guitarra}</td>
-        <td>${funda.nombre}</td>
+        <td>${funda.nombre || "-"}</td>
         <td>${funda.precio}</td>
       `;
   
