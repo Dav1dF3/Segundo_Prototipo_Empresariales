@@ -6,6 +6,8 @@ package com.unibague.poctiendainstrumentos.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -41,7 +43,6 @@ public class Funda
     /**
      * Nombre descriptivo de la funda.
      */
-    @Column(nullable = false)
     private String nombre;
 
     /**
@@ -49,6 +50,7 @@ public class Funda
      * Debe ser un valor no negativo.
      */
     @Column(nullable = false)
+    @PositiveOrZero
     private double precio;
 
     @Id

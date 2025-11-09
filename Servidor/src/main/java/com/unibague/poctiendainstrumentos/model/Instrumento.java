@@ -7,6 +7,7 @@ package com.unibague.poctiendainstrumentos.model;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -57,12 +58,12 @@ public abstract class Instrumento
      * Nombre o modelo del instrumento.
      */
     @Column(nullable = false)
+    @NotBlank(message = "El nombre no puede estar vacío")
     private String nombre;
 
     /**
      * Marca fabricante del instrumento.
      */
-    @Column(nullable = false)
     private String marca;
 
     /**
@@ -70,6 +71,7 @@ public abstract class Instrumento
      * No puede ser negativo.
      */
     @Column(nullable = false)
+    @PositiveOrZero(message = "El precio base no puede ser negativo")
     private double precioBase;
 
     /**
@@ -77,12 +79,14 @@ public abstract class Instrumento
      * No puede ser negativa.
      */
     @Column(nullable = false)
+    @PositiveOrZero(message = "El stock no puede ser negativo")
     private int stock;
 
     /**
      * Fecha en que se ingresó el instrumento al inventario.
      */
     @Column(nullable = false)
+    @NotNull(message = "La fecha de ingreso es obligatoria")
     private LocalDate fechaIngreso;
 
     /**

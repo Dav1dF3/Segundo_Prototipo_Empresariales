@@ -6,6 +6,7 @@ package com.unibague.poctiendainstrumentos.model;
 
 import com.unibague.poctiendainstrumentos.model.enums.TipoGuitarra;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -48,6 +49,7 @@ public class Guitarra extends Instrumento
      * Material con el que está fabricado el cuerpo de la guitarra.
      */
     @Column(nullable = false)
+    @NotBlank
     private String materialCuerpo;
 
     /**

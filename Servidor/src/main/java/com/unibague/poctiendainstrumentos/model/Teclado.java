@@ -9,6 +9,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -41,12 +45,14 @@ public class Teclado extends Instrumento implements IProgramable
      * Número de teclas del teclado.
      */
     @Column(nullable = false)
+    @PositiveOrZero
     private int numeroTeclas;
 
     /**
      * Indica si el teclado es digital o no.
      */
     @Column(nullable = false)
+    @NotNull
     private boolean digital;
 
     /**

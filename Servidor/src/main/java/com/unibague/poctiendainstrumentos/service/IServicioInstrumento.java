@@ -4,6 +4,7 @@
  */
 package com.unibague.poctiendainstrumentos.service;
 
+import com.unibague.poctiendainstrumentos.dto.FiltroFundaDTO;
 import com.unibague.poctiendainstrumentos.dto.FiltroInstrumentoDTO;
 import com.unibague.poctiendainstrumentos.model.*;
 
@@ -128,4 +129,8 @@ public interface IServicioInstrumento {
      * @return lista con instrumentos que cumplen todos los criterios
      */
     List<Instrumento> filtrarInstrumentos(FiltroInstrumentoDTO filtro);
+
+    List<Guitarra> filtarGuitarras(FiltroInstrumentoDTO filtro);
+
+    List<Funda> filtrarFundas(FiltroFundaDTO filtro);
 }

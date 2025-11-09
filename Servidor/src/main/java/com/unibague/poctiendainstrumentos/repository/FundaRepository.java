@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FundaRepository extends JpaRepository<Funda, FundaId> {
+public interface FundaRepository extends JpaRepository<Funda, FundaId>, FundaRepositoryCustom{
 }

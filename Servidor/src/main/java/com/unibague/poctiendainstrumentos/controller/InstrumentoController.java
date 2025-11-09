@@ -1,6 +1,7 @@
 package com.unibague.poctiendainstrumentos.controller;
 
 import com.unibague.poctiendainstrumentos.dto.ApiResponse;
+import com.unibague.poctiendainstrumentos.dto.FiltroFundaDTO;
 import com.unibague.poctiendainstrumentos.dto.FiltroInstrumentoDTO;
 import com.unibague.poctiendainstrumentos.model.*;
 import com.unibague.poctiendainstrumentos.service.IServicioInstrumento;
@@ -263,6 +264,18 @@ public class InstrumentoController
     @PostMapping(value = "/filtrar")
     public ResponseEntity<List<Instrumento>> filtrarInstrumentos(@RequestBody FiltroInstrumentoDTO filtro) {
         List<Instrumento> resultado = servicioInstrumento.filtrarInstrumentos(filtro);
+        return ResponseEntity.ok(resultado);
+    }
+
+    @PostMapping(value = "guitarras/filtrar")
+    public ResponseEntity<List<Guitarra>> filtrarGuitarras(@RequestBody FiltroInstrumentoDTO filtro) {
+        List<Guitarra> resultado = servicioInstrumento.filtarGuitarras(filtro);
+        return ResponseEntity.ok(resultado);
+    }
+
+    @PostMapping(value = "/guitarras/fundas/filtrar")
+    public ResponseEntity<List<Funda>>  filtrarFundas(@RequestBody FiltroFundaDTO filtro) {
+        List<Funda>  resultado = servicioInstrumento.filtrarFundas(filtro);
         return ResponseEntity.ok(resultado);
     }
 }

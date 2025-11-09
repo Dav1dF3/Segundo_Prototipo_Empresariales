@@ -1,6 +1,7 @@
 package com.unibague.poctiendainstrumentos.handler;
 
 import com.unibague.poctiendainstrumentos.dto.ApiResponse;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,7 @@ public class GlobalExceptionHandler
     public ResponseEntity<ApiResponse> HttpMessageNotReadableException(HttpMessageNotReadableException ex)
     {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ApiResponse(true, "El cuerpo de la petición es requerido y debe estar en formato JSON válido."));
+                .body(new ApiResponse(true, ex.getLocalizedMessage()));
     }
 
     /**
@@ -88,6 +89,12 @@ public class GlobalExceptionHandler
     @ExceptionHandler(DataIntegrityViolationException.class )
     public ResponseEntity<ApiResponse> handleDataIntegrityViolation(DataIntegrityViolationException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(new ApiResponse(true, e.getMessage()));
+                .body(new ApiResponse(true, e.getLocalizedMessage()));
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ApiResponse> handleConstraintViolation(ConstraintViolationException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ApiResponse(true, e.getLocalizedMessage()));
     }
 }

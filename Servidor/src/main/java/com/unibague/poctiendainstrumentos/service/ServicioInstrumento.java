@@ -10,6 +10,7 @@
  */
 package com.unibague.poctiendainstrumentos.service;
 
+import com.unibague.poctiendainstrumentos.dto.FiltroFundaDTO;
 import com.unibague.poctiendainstrumentos.dto.FiltroInstrumentoDTO;
 import com.unibague.poctiendainstrumentos.model.*;
 import com.unibague.poctiendainstrumentos.repository.FundaRepository;
@@ -87,6 +88,10 @@ public class ServicioInstrumento implements IServicioInstrumento {
     public void agregarInstrumento(Instrumento instrumento) {
         if (instrumento == null) {
             throw new IllegalArgumentException("El instrumento no puede ser nulo");
+        }
+        if (instrumentoRepository.existsById(instrumento.getCodigo()))
+        {
+            throw new IllegalStateException("El instrumento ya existe");
         }
         if (instrumento instanceof Guitarra guitarra) {
             guitarra.getFundas().forEach(funda -> {
@@ -283,7 +288,17 @@ public class ServicioInstrumento implements IServicioInstrumento {
      */
     @Override
     public List<Instrumento> filtrarInstrumentos(FiltroInstrumentoDTO filtro) {
-        //PENDIENTE
-        return null;
+        return instrumentoRepository.filtrarInstrumentos(filtro);
+    }
+
+    @Override
+    public List<Guitarra> filtarGuitarras(FiltroInstrumentoDTO filtro) {
+        return guitarraRepository.filtrarGuitarras(filtro);
+    }
+
+    @Override
+    public List<Funda> filtrarFundas(FiltroFundaDTO filtro)
+    {
+        return fundaRepository.filtrarFundas(filtro);
     }
 }
