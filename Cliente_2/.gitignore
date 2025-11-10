@@ -1,0 +1,77 @@
+# Archivos de Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sdf
+*.cachefile
+
+# Archivos de compilación
+bin/
+obj/
+[Bb]uild/
+[Bb]uilds/
+*.pidb
+*.log
+
+# Archivos de publicación
+publish/
+
+# Paquetes NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Archivos de configuración de Visual Studio
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.dbmdl
+*.bak
+
+# Archivos temporales y de sistema
+*.tmp
+*.temp
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+*.Thumbs.db
+
+# Archivos de configuración del editor
+.vscode/
+
+# Archivos generados por pruebas
+TestResults/
+*.TestResults/
+
+# Archivos de configuración y dependencias
+*.dotCover
+.idea/
+_Resharper*/
+
+# Archivos de Windows específicos
+*.exe
+*.dll
+*.pdb
+
+# Archivos de publicación ClickOnce
+publish/
+
+# Archivos ocultos de sistema operativo
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Otros archivos y carpetas que suelen excluirse
+*.orig
+*.rej
+
+# ¡IMPORTANTE! Carpeta .vs (configuración de Visual Studio)
+.vs/
+

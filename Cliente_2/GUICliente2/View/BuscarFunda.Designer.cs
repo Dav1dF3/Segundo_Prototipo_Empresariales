@@ -1,6 +1,6 @@
 ﻿namespace GUICliente2
 {
-    partial class AgregarFunda
+    partial class BuscarFunda
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.textCGuitarra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textPrecio
@@ -45,6 +45,7 @@
             this.textPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textPrecio.Location = new System.Drawing.Point(234, 145);
             this.textPrecio.Name = "textPrecio";
+            this.textPrecio.ReadOnly = true;
             this.textPrecio.Size = new System.Drawing.Size(231, 27);
             this.textPrecio.TabIndex = 15;
             // 
@@ -63,6 +64,7 @@
             this.textNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textNombre.Location = new System.Drawing.Point(234, 102);
             this.textNombre.Name = "textNombre";
+            this.textNombre.ReadOnly = true;
             this.textNombre.Size = new System.Drawing.Size(231, 27);
             this.textNombre.TabIndex = 13;
             // 
@@ -122,23 +124,23 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // btnAgregar
+            // btnBuscar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(369, 200);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(96, 35);
-            this.btnAgregar.TabIndex = 19;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.btnBuscar.Location = new System.Drawing.Point(369, 200);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(96, 35);
+            this.btnBuscar.TabIndex = 19;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // AgregarFunda
+            // BuscarFunda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 247);
             this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.textPrecio);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textNombre);
@@ -147,8 +149,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textCGuitarra);
             this.Controls.Add(this.label1);
-            this.Name = "AgregarFunda";
-            this.Text = "Agregar Funda";
+            this.Name = "BuscarFunda";
+            this.Text = "Buscar Funda";
             this.Load += new System.EventHandler(this.AgregarFunda_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -166,6 +168,6 @@
         private System.Windows.Forms.TextBox textCGuitarra;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCerrar;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }

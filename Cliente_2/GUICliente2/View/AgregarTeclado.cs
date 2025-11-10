@@ -28,36 +28,53 @@ namespace GUICliente2
         {
             if (string.IsNullOrWhiteSpace(textCodigo.Text) ||
                 string.IsNullOrWhiteSpace(textNombre.Text) ||
-                string.IsNullOrWhiteSpace(textMarca.Text)  ||
+                string.IsNullOrWhiteSpace(textMarca.Text) ||
                 string.IsNullOrWhiteSpace(textPrecio.Text) ||
-                string.IsNullOrWhiteSpace(textStock.Text)  ||
-                string.IsNullOrWhiteSpace(textTipo.Text)   ||
+                string.IsNullOrWhiteSpace(textStock.Text) ||
+                string.IsNullOrWhiteSpace(textTipo.Text) ||
                 comboBox1.SelectedIndex == -1)
-
             {
                 MessageBox.Show("Por favor, completa los campos obligatorios",
                                 "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string codigo = textCodigo.Text.Trim();
+            // Parsear y validar tipo para cada campo numérico
+            if (!long.TryParse(textCodigo.Text.Trim(), out long codigoLong))
+            {
+                MessageBox.Show("El código debe ser un número válido.",
+                                "Error en código", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!double.TryParse(textPrecio.Text, out double precio))
+            {
+                MessageBox.Show("Precio inválido.",
+                                "Error de precio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!int.TryParse(textStock.Text, out int stock))
+            {
+                MessageBox.Show("Stock inválido.",
+                                "Error de stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!int.TryParse(textTipo.Text, out int numeroTeclas))
+            {
+                MessageBox.Show("Número de teclas inválido.",
+                                "Error en número de teclas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string nombre = textNombre.Text.Trim();
             string marca = textMarca.Text.Trim();
-            double precio = double.TryParse(textPrecio.Text, out var p) ? p : 0;
-            int stock = int.TryParse(textStock.Text, out var s) ? s : 0;
-            int numeroTeclas = int.TryParse(textTipo.Text, out var n) ? n : 0;
             DateTime fechaIngreso = dateCreacion.Value;
-
-            bool digital = false;
-            if (rbtnDigi.Checked) digital = true;
-            else if (rbtnAna.Checked) digital = false;
-
-            string sensibilidad = comboBox1.SelectedItem.ToString() ?? "Ninguna";
+            bool digital = rbtnDigi.Checked;
+            string sensibilidad = comboBox1.SelectedItem?.ToString() ?? "Ninguna";
 
             var teclado = new Teclado
             {
                 Type = "teclado",
-                Codigo = codigo,
+                Codigo = codigoLong, // ← long, no string
                 Nombre = nombre,
                 Marca = marca,
                 PrecioBase = precio,
@@ -68,7 +85,8 @@ namespace GUICliente2
                 Sensibilidad = sensibilidad
             };
 
-            try { 
+            try
+            {
                 bool creado = await _servicio.AgregarInstrumento(teclado);
 
                 if (creado)
@@ -96,12 +114,11 @@ namespace GUICliente2
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show($"Error al agregar el teclado:\n{ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
+
 
         private void LimpiarCampos()
         {

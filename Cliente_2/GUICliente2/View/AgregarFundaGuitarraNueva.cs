@@ -32,7 +32,8 @@ namespace GUICliente2
         {
             if (string.IsNullOrWhiteSpace(textCFunda.Text) ||
                 string.IsNullOrWhiteSpace(textNombre.Text) ||
-                !double.TryParse(textPrecio.Text, out double precio))
+                !double.TryParse(textPrecio.Text, out double precio) ||
+                !long.TryParse(textCFunda.Text, out long codigoFunda))
             {
                 MessageBox.Show("Por favor completa todos los campos correctamente.",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -41,7 +42,7 @@ namespace GUICliente2
 
             var nueva = new Funda
             {
-                Codigo = textCFunda.Text.Trim(),
+                Codigo = codigoFunda,
                 Nombre = textNombre.Text.Trim(),
                 Precio = precio
             };
@@ -53,5 +54,6 @@ namespace GUICliente2
             textNombre.Clear();
             textPrecio.Clear();
         }
+
     }
 }

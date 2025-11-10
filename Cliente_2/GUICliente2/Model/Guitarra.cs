@@ -15,8 +15,9 @@ namespace GUICliente2.Model
 
     public class Funda
     {
-        public string Codigo { get; set; }
-        public string Nombre { get; set; }
+        public long Codigo { get; set; }
+        public string? Nombre { get; set; }
         public double Precio { get; set; }
+        public long Codigo_Guitarra { get; set; }
     }
 }

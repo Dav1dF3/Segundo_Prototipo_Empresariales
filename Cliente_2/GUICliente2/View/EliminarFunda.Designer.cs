@@ -84,7 +84,6 @@
             this.textCGuitarra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCGuitarra.Location = new System.Drawing.Point(179, 58);
             this.textCGuitarra.Name = "textCGuitarra";
-            this.textCGuitarra.ReadOnly = true;
             this.textCGuitarra.Size = new System.Drawing.Size(286, 27);
             this.textCGuitarra.TabIndex = 11;
             // 
@@ -134,6 +133,7 @@
             this.btnEliminar.TabIndex = 19;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnBuscar
             // 
@@ -143,6 +143,7 @@
             this.btnBuscar.TabIndex = 21;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // EliminarFunda
             // 

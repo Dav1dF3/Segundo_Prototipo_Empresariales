@@ -55,7 +55,8 @@ namespace GUICliente2
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al obtener los instrumentos:\n{ex.Message}", "Error",
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                MessageBox.Show($"Error al obtener los instrumentos:\n{ex.ToString}", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally

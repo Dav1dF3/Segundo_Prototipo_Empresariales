@@ -134,6 +134,17 @@ namespace GUICliente2.Service
             return response.StatusCode == HttpStatusCode.OK;
         }
 
+        //Listar las fundas
+
+        public async Task<List<Funda>> ListarFundas()
+        {
+            var response = await _httpClient.GetAsync($"{Endpoint}/guitarras/fundas");
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Funda>>(json, Options);
+        }
+
+
         // Agregar fundas a una guitarra
         public async Task<bool> AgregarFundas(string codigo, List<Funda> fundas)
         {
@@ -144,6 +155,20 @@ namespace GUICliente2.Service
             response.EnsureSuccessStatusCode();
 
             return response.StatusCode == HttpStatusCode.Created;
+        }
+
+        //Buscar una funda
+        public async Task<Funda> buscarFunda(string codigo, string codigoFunda)
+        {
+            var response = await _httpClient.GetAsync($"{Endpoint}/guitarras/{codigo}/fundas/{codigoFunda}");
+
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                return null;
+
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Funda>(json, Options);
         }
 
         // Editar una funda
@@ -184,6 +209,37 @@ namespace GUICliente2.Service
 
             var body = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<List<Instrumento>>(body, Options);
+        }
+
+        public async Task<List<Guitarra>> FiltrarGuitarras(FiltroInstrumentoDTO filtro)
+        {
+            var json = JsonSerializer.Serialize(filtro, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync($"{Endpoint}/guitarras/filtrar", content);
+            response.EnsureSuccessStatusCode();
+
+            var body = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Guitarra>>(body, Options);
+        }
+
+        public async Task<List<Funda>> FiltrarFundas(FiltroFundaDTO filtro)
+        {
+            var json = JsonSerializer.Serialize(filtro, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            MessageBox.Show(json);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync($"{Endpoint}/guitarras/fundas/filtrar", content);
+            response.EnsureSuccessStatusCode();
+
+            var body = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Funda>>(body, Options);
         }
     }
 }

@@ -95,11 +95,18 @@
   <ItemGroup>
     <Compile Include="Model\Enums\SensibilidadTeclado.cs" />
     <Compile Include="Model\Enums\TipoGuitarra.cs" />
+    <Compile Include="Model\FiltroFundaDTO.cs" />
     <Compile Include="Model\Guitarra.cs" />
     <Compile Include="Model\Instrumento.cs" />
     <Compile Include="Model\Teclado.cs" />
     <Compile Include="Model\FiltroInstrumentoDTO.cs" />
     <Compile Include="Service\ServicioInstrumento.cs" />
+    <Compile Include="View\BuscarFunda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\BuscarFunda.Designer.cs">
+      <DependentUpon>BuscarFunda.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AgregarFundaGuitarraNueva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,11 +185,23 @@
     <Compile Include="View\CargarPreset.Designer.cs">
       <DependentUpon>CargarPreset.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FiltrosFunda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FiltrosFunda.Designer.cs">
+      <DependentUpon>FiltrosFunda.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\Filtros.Designer.cs">
       <DependentUpon>Filtros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListarFunda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ListarFunda.Designer.cs">
+      <DependentUpon>ListarFunda.cs</DependentUpon>
     </Compile>
     <Compile Include="View\GuardarPreset.cs">
       <SubType>Form</SubType>
@@ -216,6 +235,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="View\BuscarFunda.resx">
+      <DependentUpon>BuscarFunda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AgregarFundaGuitarraNueva.resx">
       <DependentUpon>AgregarFundaGuitarraNueva.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,11 +277,17 @@
     <EmbeddedResource Include="View\CargarPreset.resx">
       <DependentUpon>CargarPreset.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FiltrosFunda.resx">
+      <DependentUpon>FiltrosFunda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Filtros.resx">
       <DependentUpon>Filtros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\GuardarPreset.resx">
       <DependentUpon>GuardarPreset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ListarFunda.resx">
+      <DependentUpon>ListarFunda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ListarGuitarra.resx">
       <DependentUpon>ListarGuitarra.cs</DependentUpon>

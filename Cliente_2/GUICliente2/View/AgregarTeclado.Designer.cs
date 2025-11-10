@@ -246,7 +246,7 @@
           
             "Ninguna",
             "Básica",
-            "Intermedia",
+            "Media",
             "Alta",
             "Profesional"});
             this.comboBox1.Location = new System.Drawing.Point(227, 323);

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GUICliente2.View;
 
 namespace GUICliente2
 {
@@ -28,21 +29,27 @@ namespace GUICliente2
             gui.Show();
         }
 
+        private void acercaDe_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Desarrollado por:\nGerman Castellanos\nDavid Orjuela\nJorge Rodriguez",
+                "Información",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private void instrumentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void listarGuitarra_Click(object sender, EventArgs e)
         {
             ListarGuitarra gui = new ListarGuitarra();
-            gui.Show();
-        }
-
-        private void listarTeclado_Click(object sender, EventArgs e)
-        {
-            ListarTeclado gui = new ListarTeclado();
-            gui.Show();
-        }
-
-        private void buscarGuitarra_Click(object sender, EventArgs e)
-        {
-            BuscarGuitarra gui = new BuscarGuitarra();
             gui.Show();
         }
 
@@ -52,31 +59,10 @@ namespace GUICliente2
             gui.Show();
         }
 
-        private void agregarFunda_Click(object sender, EventArgs e)
+        private void buscarGuitarra_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "La función solicitada aún no está implementada. Por favor, intente nuevamente más tarde.",
-                "Función no implementada",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
-
-        private void actualizarFunda_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(
-                "La función solicitada aún no está implementada. Por favor, intente nuevamente más tarde.",
-                "Función no implementada",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
-
-        private void eliminarFunda_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(
-                "La función solicitada aún no está implementada. Por favor, intente nuevamente más tarde.",
-                "Función no implementada",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            BuscarGuitarra gui = new BuscarGuitarra();
+            gui.Show();
         }
 
         private void actualizarGuitarra_Click(object sender, EventArgs e)
@@ -88,6 +74,30 @@ namespace GUICliente2
         private void eliminarGuitarra_Click(object sender, EventArgs e)
         {
             EliminarGuitarra gui = new EliminarGuitarra();
+            gui.Show();
+        }
+
+        private void guardarPreset_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "La función solicitada aún no está implementada. Por favor, intente nuevamente más tarde.",
+                "Función no implementada",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private void cargarPreset_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "La función solicitada aún no está implementada. Por favor, intente nuevamente más tarde.",
+                "Función no implementada",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private void listarTeclado_Click(object sender, EventArgs e)
+        {
+            ListarTeclado gui = new ListarTeclado();
             gui.Show();
         }
 
@@ -111,44 +121,38 @@ namespace GUICliente2
 
         private void eliminarTeclado_Click(object sender, EventArgs e)
         {
-            EliminarTeclado gui = new EliminarTeclado();
+            EliminarTeclado gui = new();
             gui.Show();
         }
 
-        private void guardarPreset_Click(object sender, EventArgs e)
+        private void agregarFunda_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "La función solicitada aún no está implementada. Por favor, intente nuevamente más tarde.",
-                "Función no implementada",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            AgregarFunda gui = new();
+            gui.Show();
         }
 
-        private void cargarPreset_Click(object sender, EventArgs e)
+        private void buscarFunda_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "La función solicitada aún no está implementada. Por favor, intente nuevamente más tarde.",
-                "Función no implementada",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            BuscarFunda gui = new();
+            gui.Show();
         }
 
-        private void acercaDe_Click(object sender, EventArgs e)
+        private void actualizarFunda_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Desarrollado por:\nGerman Castellanos\nDavid Orjuela\nJorge Rodriguez",
-                "Información",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            ActualizarFunda gui = new();
+            gui.Show();
         }
 
-        private void instrumentoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void eliminarFunda_Click(object sender, EventArgs e)
         {
-
+            EliminarFunda gui = new();
+            gui.Show();
         }
 
-        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void listarToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            ListarFunda gui = new();
+            gui.Show();
         }
     }
 }

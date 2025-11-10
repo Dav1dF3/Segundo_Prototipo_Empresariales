@@ -35,35 +35,49 @@ namespace GUICliente2
 
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textCodigo.Text)   ||
-                string.IsNullOrWhiteSpace(textNombre.Text)   ||
-                string.IsNullOrWhiteSpace(textMarca.Text)    ||
-                string.IsNullOrWhiteSpace(textPrecio.Text)   ||
-                string.IsNullOrWhiteSpace(textStock.Text)    ||
+            if (string.IsNullOrWhiteSpace(textCodigo.Text) ||
+                string.IsNullOrWhiteSpace(textNombre.Text) ||
+                string.IsNullOrWhiteSpace(textMarca.Text) ||
+                string.IsNullOrWhiteSpace(textPrecio.Text) ||
+                string.IsNullOrWhiteSpace(textStock.Text) ||
                 string.IsNullOrWhiteSpace(textMaterial.Text) ||
                 comboBoxTipo.SelectedIndex == -1)
-
             {
                 MessageBox.Show("Por favor, completa los campos obligatorios",
                                 "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string codigo = textCodigo.Text.Trim();
+            // Validación y parseo seguro de todos los campos numéricos
+            if (!long.TryParse(textCodigo.Text.Trim(), out long codigoLong))
+            {
+                MessageBox.Show("El código debe ser un número válido.",
+                                "Error en código", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!double.TryParse(textPrecio.Text, out double precio))
+            {
+                MessageBox.Show("Precio inválido.",
+                                "Error de precio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!int.TryParse(textStock.Text, out int stock))
+            {
+                MessageBox.Show("Stock inválido.",
+                                "Error de stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string nombre = textNombre.Text.Trim();
             string marca = textMarca.Text.Trim();
-            double precio = double.TryParse(textPrecio.Text, out var p) ? p : 0;
-            int stock = int.TryParse(textStock.Text, out var s) ? s : 0;
             DateTime fechaIngreso = dateCreacion.Value;
             string tipo = comboBoxTipo.SelectedItem.ToString();
             string material = textMaterial.Text.Trim();
 
-
-
             var guitarra = new Guitarra
             {
                 Type = "guitarra",
-                Codigo = codigo,
+                Codigo = codigoLong, // Ahora es long, no string
                 Nombre = nombre,
                 Marca = marca,
                 PrecioBase = precio,
@@ -103,12 +117,11 @@ namespace GUICliente2
             }
             catch (Exception ex)
             {
-           
-                    MessageBox.Show($"Error al agregar la guitarra:\n{ex.Message}",
-                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+                MessageBox.Show($"Error al agregar la guitarra:\n{ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void rbtnSi_CheckedChanged(object sender, EventArgs e)
