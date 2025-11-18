@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.util.NoSuchElementException;
 
@@ -95,6 +96,12 @@ public class GlobalExceptionHandler
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ApiResponse> handleConstraintViolation(ConstraintViolationException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ApiResponse(true, e.getLocalizedMessage()));
+    }
+
+    @ExceptionHandler(WebClientResponseException.class)
+    public ResponseEntity<ApiResponse> handleWebClientResponseException(WebClientResponseException e) {
+        return ResponseEntity.status(e.getStatusCode())
                 .body(new ApiResponse(true, e.getLocalizedMessage()));
     }
 }
