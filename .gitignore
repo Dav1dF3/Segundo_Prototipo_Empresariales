@@ -110,3 +110,5 @@ Desktop.ini
 # ¡IMPORTANTE! Carpeta .vs (configuración de Visual Studio)
 .vs/
 
+venv/
+__pycache__/
