@@ -38,11 +38,11 @@ function renderizarTablaGuitarras(guitarras) {
       : "-";
 
     fila.innerHTML = `
-        <td>${guitarra.codigo}</td>
-        <td>${guitarra.nombre}</td>
+        <td>${guitarra.codigo || "-"}</td>
+        <td>${guitarra.nombre || "-"}</td>
         <td>${guitarra.marca || "-"}</td>
         <td>${guitarra.precioBase || guitarra.precio || "-"}</td>
-        <td>${guitarra.stock}</td>
+        <td>${guitarra.stock || "-"}</td>
         <td>${guitarra.fechaIngreso || "-"}</td>
         <td>${guitarra.tipo || "-"}</td>
         <td>${guitarra.materialCuerpo || "-"}</td>
@@ -74,7 +74,7 @@ function configurarFiltros() {
 
     try {
       // Igual que antes: en REST no es común GET con body, se usa POST para filtrar
-      const response = await fetch(`${BASE_URL}/filtrar`, {
+      const response = await fetch(`${BASE_URL}/guitarras/filtrar`, {
         method: "POST",
         headers: headers,
         body: JSON.stringify(filtro)

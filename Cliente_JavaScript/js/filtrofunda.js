@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const formFiltros = document.getElementById("form-filtros");
-  const tablaBody = document.getElementById("tabla-body");
+  const tablaBody = document.getElementById("tbody-case");
 
   formFiltros.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -8,25 +8,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Construir objeto filtro con todas las claves que el backend espera
     const filtro = {
       nombre: null,
-      marca: null,
       precioMin: null,
       precioMax: null,
-      stockMin: null,
-      stockMax: null,
-      tipoGuitarra: null,
-      sensibilidad: null
+      codigoGuitarra: null
     };
+
+    // Codigo Guitarra
+    if (document.getElementById("chk-codigo-guitar").checked) {
+      const val = document.querySelector("#chk-codigo-guitar + label + input").value;
+      filtro.codigoGuitarra = val !== "" ? parseInt(val) : null;
+    }
 
     // Nombre
     if (document.getElementById("chk-nombre").checked) {
       const val = document.querySelector("#chk-nombre + label + input").value.trim();
       filtro.nombre = val !== "" ? val : null;
-    }
-
-    // Marca
-    if (document.getElementById("chk-marca").checked) {
-      const val = document.querySelector("#chk-marca + label + input").value.trim();
-      filtro.marca = val !== "" ? val : null;
     }
 
     // Precio mínimo
@@ -41,22 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
       filtro.precioMax = val !== "" ? parseFloat(val) : null;
     }
 
-    // Stock mínimo
-    if (document.getElementById("chk-stockmin").checked) {
-      const val = document.querySelector("#chk-stockmin + label + input").value;
-      filtro.stockMin = val !== "" ? parseInt(val) : null;
-    }
-
-    // Stock máximo
-    if (document.getElementById("chk-stockmax").checked) {
-      const val = document.querySelector("#chk-stockmax + label + input").value;
-      filtro.stockMax = val !== "" ? parseInt(val) : null;
-    }
-
     console.log("Objeto filtro a enviar:", filtro);
 
     try {
-      const response = await fetch(`${BASE_URL}/filtrar`, {
+      const response = await fetch(`${BASE_URL}/guitarras/fundas/filtrar`, {
         method: "POST",
         headers: headers,
         body: JSON.stringify(filtro)
@@ -75,29 +59,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } catch (error) {
       console.error(error);
-      alert("Hubo un error al filtrar los instrumentos ❌");
+      alert("Hubo un error al filtrar las fundas ❌");
     }
   });
 
-  function cargarTabla(instrumentos) {
+  function cargarTabla(funda) {
     tablaBody.innerHTML = "";
 
-    if (!instrumentos || instrumentos.length === 0) {
-      tablaBody.innerHTML = `<tr><td colspan="7">No se encontraron resultados</td></tr>`;
+    if (!funda || funda.length === 0) {
+      tablaBody.innerHTML = `<tr><td colspan="4">No se encontraron resultados</td></tr>`;
       return;
     }
 
-    instrumentos.forEach(inst => {
+    funda.forEach(inst => {
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td>${inst.codigo || "-"}</td>
+        <td>${inst.codigo}</td>
+        <td>${inst.codigoGuitarra}</td>
         <td>${inst.nombre || "-"}</td>
-        <td>${inst.marca || "-"}</td>
-        <td>${inst.precioBase || "-"}</td>
-        <td>${inst.stock || "-"}</td>
-        <td>${inst.fechaIngreso || "-"}</td>
-        <td>${inst.type || "-"}</td>
+        <td>${inst.precio}</td>
       `;
 
       tablaBody.appendChild(row);

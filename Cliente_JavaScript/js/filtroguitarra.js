@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const formFiltros = document.getElementById("form-filtros");
-  const tablaBody = document.getElementById("tabla-body");
+  const tablaBody = document.getElementById("tbody-guitars");
 
   formFiltros.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -12,9 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       precioMin: null,
       precioMax: null,
       stockMin: null,
-      stockMax: null,
-      tipoGuitarra: null,
-      sensibilidad: null
+      stockMax: null
     };
 
     // Nombre
@@ -56,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Objeto filtro a enviar:", filtro);
 
     try {
-      const response = await fetch(`${BASE_URL}/filtrar`, {
+      const response = await fetch(`${BASE_URL}/guitarras/filtrar`, {
         method: "POST",
         headers: headers,
         body: JSON.stringify(filtro)
@@ -75,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } catch (error) {
       console.error(error);
-      alert("Hubo un error al filtrar los instrumentos ❌");
+      alert("Hubo un error al filtrar las guitarras ❌");
     }
   });
 
@@ -83,21 +81,32 @@ document.addEventListener("DOMContentLoaded", () => {
     tablaBody.innerHTML = "";
 
     if (!instrumentos || instrumentos.length === 0) {
-      tablaBody.innerHTML = `<tr><td colspan="7">No se encontraron resultados</td></tr>`;
+      tablaBody.innerHTML = `<tr><td colspan="10">No se encontraron resultados</td></tr>`;
       return;
     }
 
     instrumentos.forEach(inst => {
       const row = document.createElement("tr");
 
+      const fundasNombre = inst.fundas && inst.fundas.length > 0
+      ? inst.fundas.map(f => f.nombre || "-").join(", ")
+      : "-";
+
+    const fundasCodigo = inst.fundas && inst.fundas.length > 0
+      ? inst.fundas.map(f => f.codigo || f.codigo).join(", ")
+      : "-";
+
       row.innerHTML = `
         <td>${inst.codigo || "-"}</td>
         <td>${inst.nombre || "-"}</td>
         <td>${inst.marca || "-"}</td>
-        <td>${inst.precioBase || "-"}</td>
+        <td>${inst.precioBase || inst.precio || "-"}</td>
         <td>${inst.stock || "-"}</td>
         <td>${inst.fechaIngreso || "-"}</td>
-        <td>${inst.type || "-"}</td>
+        <td>${inst.tipo || "-"}</td>
+        <td>${inst.materialCuerpo || "-"}</td>
+        <td>${fundasCodigo}</td>
+        <td>${fundasNombre}</td>
       `;
 
       tablaBody.appendChild(row);

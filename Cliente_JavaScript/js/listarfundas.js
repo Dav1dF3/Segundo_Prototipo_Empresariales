@@ -58,9 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
       try {
         // Igual que antes: en REST no es común GET con body, se usa POST para filtrar
-        //FALTA CAMBIAR ESTO EN EL SERVIDOR
-        //AGREGAR EL DTO PERO PARA FUNDAS, NO PARA INSTRUMENTOS
-        const response = await fetch(`${BASE_URL}/filtrar`, {
+        const response = await fetch(`${BASE_URL}/guitarras/fundas/filtrar`, {
           method: "POST",
           headers: headers, 
           body: JSON.stringify(filtro)

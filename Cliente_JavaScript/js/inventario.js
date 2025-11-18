@@ -30,11 +30,11 @@ function renderizarTabla(instrumentos) {
     const fila = document.createElement("tr");
 
     fila.innerHTML = `
-        <td>${instr.codigo}</td>
-        <td>${instr.nombre}</td>
+        <td>${instr.codigo || "-"}</td>
+        <td>${instr.nombre || "-"}</td>
         <td>${instr.marca || "-"}</td>
         <td>${instr.precioBase || instr.precio || "-"}</td>
-        <td>${instr.stock}</td>
+        <td>${instr.stock || "-"}</td>
         <td>${instr.fechaIngreso || "-"}</td>
         <td>${instr.type || "-"}</td>
       `;
