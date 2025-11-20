@@ -95,12 +95,40 @@
   <ItemGroup>
     <Compile Include="Model\Enums\SensibilidadTeclado.cs" />
     <Compile Include="Model\Enums\TipoGuitarra.cs" />
+    <Compile Include="Model\AmplificadorDTO.cs" />
     <Compile Include="Model\FiltroFundaDTO.cs" />
+    <Compile Include="Model\GuitarrasConAmplificadorDTO.cs" />
     <Compile Include="Model\Guitarra.cs" />
     <Compile Include="Model\Instrumento.cs" />
     <Compile Include="Model\Teclado.cs" />
     <Compile Include="Model\FiltroInstrumentoDTO.cs" />
+    <Compile Include="Service\ServicioAmplificador.cs" />
     <Compile Include="Service\ServicioInstrumento.cs" />
+    <Compile Include="System\Text\Json\Serialization\JsonDateTimeConverter.cs" />
+    <Compile Include="View\EliminarAmplificador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EliminarAmplificador.Designer.cs">
+      <DependentUpon>EliminarAmplificador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ActualizarAmplificador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ActualizarAmplificador.Designer.cs">
+      <DependentUpon>ActualizarAmplificador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\BuscarAmplificador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\BuscarAmplificador.Designer.cs">
+      <DependentUpon>BuscarAmplificador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AgregarAmplificador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AgregarAmplificador.Designer.cs">
+      <DependentUpon>AgregarAmplificador.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\BuscarFunda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +237,12 @@
     <Compile Include="View\GuardarPreset.Designer.cs">
       <DependentUpon>GuardarPreset.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ListarAmplificador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ListarAmplificador.Designer.cs">
+      <DependentUpon>ListarAmplificador.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ListarTeclado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +269,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="View\EliminarAmplificador.resx">
+      <DependentUpon>EliminarAmplificador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ActualizarAmplificador.resx">
+      <DependentUpon>ActualizarAmplificador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\BuscarAmplificador.resx">
+      <DependentUpon>BuscarAmplificador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AgregarAmplificador.resx">
+      <DependentUpon>AgregarAmplificador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\BuscarFunda.resx">
       <DependentUpon>BuscarFunda.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ListarFunda.resx">
       <DependentUpon>ListarFunda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ListarAmplificador.resx">
+      <DependentUpon>ListarAmplificador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ListarGuitarra.resx">
       <DependentUpon>ListarGuitarra.cs</DependentUpon>
