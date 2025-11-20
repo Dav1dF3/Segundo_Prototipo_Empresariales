@@ -1,4 +1,6 @@
 const BASE_URL = 'http://localhost:8090/instrumentos';
+// Base URL específica para amplificadores (endpoints separados del recurso instrumentos)
+const AMPLIFICADORES_URL = 'http://localhost:8090/amplificadores';
 
 const username = 'admin';
 const password = 'admin';
@@ -141,4 +143,58 @@ async function healthCheck() {
     method: 'GET'
   });
   return response.text();
+}
+
+// =============================
+// AMPLIFICADORES (CRUD SIMPLE)
+// =============================
+
+// GET /amplificadores - Listar todos los amplificadores
+async function listarAmplificadores() {
+  const response = await fetch(AMPLIFICADORES_URL + '/', {
+    method: 'GET',
+    headers: headers
+  });
+  return response.json();
+}
+
+// POST /amplificadores - Agregar nuevo amplificador
+async function agregarAmplificador(amplificador) {
+  const response = await fetch(AMPLIFICADORES_URL + '/', {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(amplificador)
+  });
+  return response;
+}
+
+// GET /amplificadores/{id} - Buscar amplificador por ID
+async function buscarAmplificador(id) {
+  const response = await fetch(`${AMPLIFICADORES_URL}/${id}`, {
+    method: 'GET',
+    headers: headers
+  });
+  if (response.status === 404) {
+    return null;
+  }
+  return response.json();
+}
+
+// PUT /amplificadores/{id} - Editar amplificador
+async function editarAmplificador(id, amplificadorModificado) {
+  const response = await fetch(`${AMPLIFICADORES_URL}/${id}`, {
+    method: 'PUT',
+    headers: headers,
+    body: JSON.stringify(amplificadorModificado)
+  });
+  return response;
+}
+
+// DELETE /amplificadores/{id} - Eliminar amplificador
+async function eliminarAmplificador(id) {
+  const response = await fetch(`${AMPLIFICADORES_URL}/${id}`, {
+    method: 'DELETE',
+    headers: headers
+  });
+  return response;
 }

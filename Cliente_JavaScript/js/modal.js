@@ -1,39 +1,65 @@
-const btnFiltros = document.getElementById("btn-filtros");
-    const modal = document.getElementById("modal-filtros");
-    const spanClose = document.querySelector(".close");
+// === MODAL FILTROS GENERICO ===
+// Funciona para listados con estructura:
+//  #btn-filtros, #modal-filtros, #form-filtros y .filtro-item { checkbox + label + input }
+// Robusto ante ausencia de elementos (otras páginas reutilizan este JS).
 
-    // abrir modal
-    btnFiltros.onclick = function () {
-      modal.style.display = "block";
+document.addEventListener('DOMContentLoaded', () => {
+  const btnFiltros = document.getElementById('btn-filtros');
+  const modal = document.getElementById('modal-filtros');
+  const spanClose = modal?.querySelector('.close');
+  const form = document.getElementById('form-filtros');
+
+  if (!btnFiltros || !modal || !form) return; // No hay modal en esta página
+
+  // Asegurar que el modal inicia oculto aunque CSS falle
+  modal.style.display = 'none';
+
+  function abrirModal() {
+    modal.classList.add('is-open');
+    modal.style.display = 'flex';
+    inicializarEstadoInputs();
+    // Enfocar el primer checkbox para accesibilidad
+    const firstChk = form.querySelector('input[type=checkbox]');
+    firstChk?.focus();
+  }
+
+  function cerrarModal() {
+    modal.classList.remove('is-open');
+    modal.style.display = 'none';
+  }
+
+  btnFiltros.addEventListener('click', abrirModal);
+  spanClose?.addEventListener('click', cerrarModal);
+
+  // cerrar al hacer clic fuera
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) cerrarModal();
+  });
+
+  // cerrar con ESC
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'block') cerrarModal();
+  });
+
+  // habilitar/deshabilitar inputs según checkbox (delegación)
+  form.addEventListener('change', (e) => {
+    const target = e.target;
+    if (target.matches('input[type=checkbox]')) {
+      const container = target.closest('.filtro-item');
+      if (!container) return;
+      const inputAsociado = container.querySelector('input:not([type=checkbox])');
+      if (inputAsociado) inputAsociado.disabled = !target.checked;
     }
+  });
 
-    // cerrar modal
-    spanClose.onclick = function () {
-      modal.style.display = "none";
-    }
-
-    // cerrar al hacer clic fuera
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-
-    // habilitar/deshabilitar inputs según checkbox
-    document.querySelectorAll("#form-filtros input[type=checkbox]").forEach(chk => {
-      chk.addEventListener("change", function () {
-        // buscar el input asociado dentro del mismo contenedor .filtro-item
-        const container = this.closest('.filtro-item');
-        if (!container) return;
-        // seleccionar el primer input que no sea checkbox (texto/número)
-        const targetInput = container.querySelector('input:not([type=checkbox])');
-        if (targetInput) targetInput.disabled = !this.checked;
-      });
-    });
-
-    // estado inicial: deshabilitar los inputs que tengan su checkbox sin marcar
-    document.querySelectorAll('#form-filtros .filtro-item').forEach(container => {
+  function inicializarEstadoInputs() {
+    form.querySelectorAll('.filtro-item').forEach(container => {
       const chk = container.querySelector('input[type=checkbox]');
-      const target = container.querySelector('input:not([type=checkbox])');
-      if (chk && target) target.disabled = !chk.checked;
+      const input = container.querySelector('input:not([type=checkbox])');
+      if (chk && input) input.disabled = !chk.checked;
     });
+  }
+
+  // Inicialización temprana (por si el modal ya está visible via estilos)
+  inicializarEstadoInputs();
+});
